@@ -1,14 +1,28 @@
 package ro.shareyourcar.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
 
-public class Owner {
+public class Owner extends AbstractModel {
 	
+	@NotEmpty
 	private String firstName;
+	
+	@NotEmpty
 	private String lastName;
+	
+	@NotEmpty
 	private String emailAddress;
+	
+	@NotEmpty
 	private String phoneNumber;
+	
+	@NotEmpty
 	private String userName;
+	
+	@NotEmpty
 	private String password;
+	
+	
 	private double profit;
 	
 	public String getFirstName() {
@@ -53,11 +67,25 @@ public class Owner {
 	public void setProfit(double profit) {
 		this.profit = profit;
 	}
+	
 	@Override
 	public String toString() {
 		return "Owner [firstName=" + firstName + ", lastName=" + lastName + ", emailAddress=" + emailAddress
 				+ ", phoneNumber=" + phoneNumber + ", userName=" + userName + ", password=" + password + ", profit="
 				+ profit + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		result = prime * result + ((emailAddress == null) ? 0 : emailAddress.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		
+		return result;
 	}
 	
 	

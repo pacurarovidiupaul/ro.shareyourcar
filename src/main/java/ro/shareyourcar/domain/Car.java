@@ -1,6 +1,6 @@
 package ro.shareyourcar.domain;
 
-public class Car {
+public class Car extends AbstractModel {
 	
 	private String producer;
 	private String model;

@@ -1,6 +1,6 @@
 package ro.shareyourcar.service;
 
-import ro.shareyourcar.db.ClientInterface;
+import ro.shareyourcar.dao.ClientInterface;
 
 public class ClientService implements ClientInterface{
 
