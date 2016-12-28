@@ -127,8 +127,13 @@ ALTER TABLE ONLY owner_role ALTER COLUMN owner_role_id SET DEFAULT nextval('owne
 --
 
 COPY owner (first_name, last_name, email_address, phone_number, user_name, password, profit, id, enabled) FROM stdin;
-ice	mc	pacurarsergiu@yahoo.com	+40744285504	Sergiu	vladimir	0	2	1
-ice	xx	pacurarovidiupaul@live.com	+40740013456	Ovidiu	maverick	0	1	1
+Pacurar	Ovidiu	pacurarovidiupaul@live.com	+40740013456	Ovidiu	maverick	0	1	1
+Pacurar	Sergiu	pacurarsergiu@yahoo.com	0744285504	Sergiu	vladimir	0	2	1
+Gavris	Gelu	gavrisgelu@yahoo.com	+40740013456	Gavris	vremuribune	0	3	1
+Mihai	Baciu	mihaibaciu@yahoo.com	0742444254	Mihai	faraparola	0	4	1
+Popescu	Marian	popescumarian@yahoo.com	0723645112	Marian	marian	0	6	1
+Tudor	Pacurar	pacurartudor@live.com	0740013456	Tudor	maverick	0	7	1
+Emilian	Pop	popemilian@yahoo.com	0743233444	Emilian	maverick	0	8	1
 \.
 
 
@@ -136,7 +141,7 @@ ice	xx	pacurarovidiupaul@live.com	+40740013456	Ovidiu	maverick	0	1	1
 -- Name: owner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('owner_id_seq', 3, true);
+SELECT pg_catalog.setval('owner_id_seq', 8, true);
 
 
 --
@@ -145,7 +150,12 @@ SELECT pg_catalog.setval('owner_id_seq', 3, true);
 
 COPY owner_role (owner_role_id, user_name, role) FROM stdin;
 1	Ovidiu	ROLE_OWNER
-2	Sergiu	ROLE_CLIENT
+2	Sergiu	ROLE_OWNER
+3	Gavris	ROLE_OWNER
+4	Mihai	ROLE_OWNER
+6	Marian	ROLE_OWNER
+7	Tudor	ROLE_OWNER
+8	Emilian	ROLE_OWNER
 \.
 
 
@@ -153,7 +163,7 @@ COPY owner_role (owner_role_id, user_name, role) FROM stdin;
 -- Name: owner_role_owner_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('owner_role_owner_role_id_seq', 2, true);
+SELECT pg_catalog.setval('owner_role_owner_role_id_seq', 8, true);
 
 
 --
@@ -169,7 +179,7 @@ ALTER TABLE ONLY owner
 --
 
 ALTER TABLE ONLY owner_role
-    ADD CONSTRAINT owner_role_pkey PRIMARY KEY (owner_role_id);
+    ADD CONSTRAINT owner_role_pkey PRIMARY KEY (owner_role_id, user_name, role);
 
 
 --

@@ -1,19 +1,26 @@
 package ro.shareyourcar.domain;
 
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Owner extends AbstractModel {
 	
 	@NotEmpty
+	@Size(min=2, max=60)
 	private String firstName;
 	
 	@NotEmpty
+	@Size(min=2, max=60)
 	private String lastName;
 	
+	
 	@NotEmpty
+	@Size(min=2, max=60)
 	private String emailAddress;
 	
 	@NotEmpty
+	@Size(min=2, max=15)
 	private String phoneNumber;
 	
 	@NotEmpty

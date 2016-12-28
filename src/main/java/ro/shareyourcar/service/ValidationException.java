@@ -3,6 +3,10 @@ package ro.shareyourcar.service;
 import java.util.Arrays;
 
 public class ValidationException extends Exception {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1937866963148162698L;
 	private String[] causes;
 
 	public ValidationException(String... causes) {

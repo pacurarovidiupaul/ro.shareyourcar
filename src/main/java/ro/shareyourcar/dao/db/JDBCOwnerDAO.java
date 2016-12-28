@@ -93,6 +93,7 @@ public class JDBCOwnerDAO implements OwnerDAO {
 		Connection connection = newConnection();
 		try {
 			PreparedStatement ps = null;
+			PreparedStatement psSecond = null;
 			if (model.getId() > 0) {
 				ps = connection.prepareStatement(
 						"update owner set first_name=?, last_name=?, email_address=?, phone_number=?, user_name=?, password=?, profit=? "
@@ -103,6 +104,12 @@ public class JDBCOwnerDAO implements OwnerDAO {
 				ps = connection.prepareStatement(
 						"insert into owner (first_name, last_name, email_address, phone_number, user_name, password, profit) "
 								+ "values (?, ?, ?, ?, ?, ?, ?) returning id");
+				
+				psSecond = connection.prepareStatement(
+						"insert into owner_role (user_name, role) "
+								+ "values ( ?, ?) returning owner_role_id");
+				
+					
 
 			}
 			
@@ -113,7 +120,10 @@ public class JDBCOwnerDAO implements OwnerDAO {
 			ps.setString(5, model.getUserName());
 			ps.setString(6, model.getPassword());
 			ps.setDouble(7, model.getProfit());
-
+			psSecond.setString(1,model.getUserName());
+			psSecond.setString(2, "ROLE_OWNER");
+            
+            
 			if (model.getId() > 0) {
 				ps.setLong(8, model.getId());
 			}
@@ -123,6 +133,9 @@ public class JDBCOwnerDAO implements OwnerDAO {
 				model.setId(rs.getLong(1));
 			}
 			rs.close();
+			
+			ResultSet rsSecond = psSecond.executeQuery();
+            rsSecond.close();
 
 			connection.commit();
 

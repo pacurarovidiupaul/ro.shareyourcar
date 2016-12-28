@@ -30,7 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers("/owner/add").permitAll().antMatchers("/client/add").permitAll()
-		.antMatchers("/owner/**").access("hasRole('ROLE_OWNER')").antMatchers("/client/**").access("hasRole('ROLE_CLIENT')")
+		.antMatchers("/owner").access("hasRole('ROLE_OWNER')").antMatchers("/owner/").access("hasRole('ROLE_OWNER')")
+		.antMatchers("/client").access("hasRole('ROLE_CLIENT')").antMatchers("/client/").access("hasRole('ROLE_CLIENT')")
 		.anyRequest().permitAll()
 		.and()
 		  .formLogin().loginPage("/login")

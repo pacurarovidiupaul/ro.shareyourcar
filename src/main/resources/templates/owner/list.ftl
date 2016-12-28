@@ -44,8 +44,13 @@
 
 </table>
 </div>
-<form action="/home" method="post">
-			<input type="submit" class="button red big" value="Sign OUT" /> 
+<form action="/logout" method="post"> 
+			<input type="submit" class="button red big" value="Sign OUT"  /> 
+			
+			
+			
 		</form>	
+
+	
 
 [/#escape]

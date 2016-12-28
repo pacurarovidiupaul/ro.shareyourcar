@@ -48,7 +48,7 @@ public class OwnerController  {
 				ownerService.save(owner);
 
 				modelAndView = new ModelAndView();
-				modelAndView.setView(new RedirectView(""));
+				modelAndView.setView(new RedirectView("done"));
 			} catch (ValidationException ex) {
 				for (String msg : ex.getCauses()) {
 					bindingResult.addError(new ObjectError("owner", msg));
@@ -72,6 +72,12 @@ public class OwnerController  {
 	public ModelAndView list() throws Exception {
 		ModelAndView modelAndView = new ModelAndView("owner/list");
 		modelAndView.addObject("owners", ownerService.listAll());
+		return modelAndView;
+	}
+	
+	@RequestMapping("/done")
+	public ModelAndView home() throws Exception {
+		ModelAndView modelAndView = new ModelAndView("done");
 		return modelAndView;
 	}
 	

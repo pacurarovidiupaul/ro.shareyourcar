@@ -14,8 +14,6 @@ import ro.shareyourcar.dao.CarDAO;
 import ro.shareyourcar.dao.OwnerDAO;
 import ro.shareyourcar.dao.db.JDBCCarDAO;
 import ro.shareyourcar.dao.db.JDBCOwnerDAO;
-import ro.shareyourcar.dao.db.JdbcTemplateOwnerDAO;
-import ro.shareyourcar.dao.inmemory.IMOwnerDAO;
 
 
 
@@ -28,9 +26,9 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 	public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/home").setViewName("home");
         registry.addViewController("/").setViewName("home");
-        registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/403").setViewName("403");
+        
 	}
 
 	@Bean
@@ -57,9 +55,6 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Bean
 	public OwnerDAO ownerDAO() {
-		//return new IMOwnerDAO();
-		
-		//return new JdbcTemplateOwnerDAO(dataSource());
 		
 		return new JDBCOwnerDAO("localhost", 
 				"5432", 
@@ -70,9 +65,7 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Bean
 	public CarDAO carDAO() {
-		//return new IMOwnerDAO();
 		
-		//return new JdbcTemplateOwnerDAO(dataSource());
 		
 		return new JDBCCarDAO("localhost", 
 				"5432", 

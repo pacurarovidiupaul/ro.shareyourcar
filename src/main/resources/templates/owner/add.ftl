@@ -69,7 +69,7 @@
 			
 			<input type="hidden" name="id" value="[#if owner.id??]${owner.id?c}[/#if]">
 			<input type="submit" value="Save">
-			<a href="/owner">Cancel</a>
+			<a href="/home">Cancel</a>
 		</form>
   </div>
 </div>

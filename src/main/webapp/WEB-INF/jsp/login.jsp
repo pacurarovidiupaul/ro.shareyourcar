@@ -35,7 +35,10 @@
 				<div class="alert-danger">Invalid username and password.</div>
 			</c:if>
 			<c:if test="${param.logout ne null}">
-				<div class="alert-normal">You have been logged out.</div>
+				<script language="javascript">
+                var page = "/home"
+                top.location = page;
+            </script> 
 			</c:if>
 		</div>
 		<input type="hidden" name="${_csrf.parameterName}"
