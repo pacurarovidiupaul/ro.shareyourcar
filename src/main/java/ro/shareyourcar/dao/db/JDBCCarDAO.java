@@ -114,6 +114,12 @@ public class JDBCCarDAO implements CarDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Car updateEdit(Car model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
 

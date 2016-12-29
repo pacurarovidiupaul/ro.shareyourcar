@@ -13,15 +13,12 @@ import ro.shareyourcar.dao.OwnerDAO;
 import ro.shareyourcar.domain.Owner;
 
 public class JDBCOwnerDAO implements OwnerDAO {
-	
+
 	private String host;
 	private String port;
 	private String dbName;
 	private String userName;
 	private String pass;
-
-	
-	
 
 	public JDBCOwnerDAO(String host, String port, String dbName, String userName, String pass) {
 		this.host = host;
@@ -37,8 +34,7 @@ public class JDBCOwnerDAO implements OwnerDAO {
 
 		Collection<Owner> result = new LinkedList<>();
 
-		try (ResultSet rs = connection.createStatement()
-				.executeQuery("select * from owner")) {
+		try (ResultSet rs = connection.createStatement().executeQuery("select * from owner")) {
 
 			while (rs.next()) {
 				result.add(extractOwner(rs));
@@ -64,8 +60,7 @@ public class JDBCOwnerDAO implements OwnerDAO {
 
 		List<Owner> result = new LinkedList<>();
 
-		try (ResultSet rs = connection.createStatement()
-				.executeQuery("select * from owner where id = " + id)) {
+		try (ResultSet rs = connection.createStatement().executeQuery("select * from owner where id = " + id)) {
 
 			while (rs.next()) {
 				result.add(extractOwner(rs));
@@ -104,15 +99,12 @@ public class JDBCOwnerDAO implements OwnerDAO {
 				ps = connection.prepareStatement(
 						"insert into owner (first_name, last_name, email_address, phone_number, user_name, password, profit) "
 								+ "values (?, ?, ?, ?, ?, ?, ?) returning id");
-				
+
 				psSecond = connection.prepareStatement(
-						"insert into owner_role (user_name, role) "
-								+ "values ( ?, ?) returning owner_role_id");
-				
-					
+						"insert into owner_role (user_name, role) " + "values ( ?, ?) returning owner_role_id");
 
 			}
-			
+
 			ps.setString(1, model.getFirstName());
 			ps.setString(2, model.getLastName());
 			ps.setString(3, model.getEmailAddress());
@@ -120,10 +112,9 @@ public class JDBCOwnerDAO implements OwnerDAO {
 			ps.setString(5, model.getUserName());
 			ps.setString(6, model.getPassword());
 			ps.setDouble(7, model.getProfit());
-			psSecond.setString(1,model.getUserName());
+			psSecond.setString(1, model.getUserName());
 			psSecond.setString(2, "ROLE_OWNER");
-            
-            
+
 			if (model.getId() > 0) {
 				ps.setLong(8, model.getId());
 			}
@@ -133,9 +124,61 @@ public class JDBCOwnerDAO implements OwnerDAO {
 				model.setId(rs.getLong(1));
 			}
 			rs.close();
-			
+
 			ResultSet rsSecond = psSecond.executeQuery();
-            rsSecond.close();
+			rsSecond.close();
+
+			connection.commit();
+
+		} catch (SQLException ex) {
+
+			throw new RuntimeException("Error getting owner.", ex);
+		} finally {
+			try {
+				connection.close();
+			} catch (Exception ex) {
+
+			}
+		}
+
+		return model;
+	}
+
+	@Override
+	public Owner updateEdit(Owner model) {
+		Connection connection = newConnection();
+		try {
+			PreparedStatement ps = null;
+			if (model.getId() > 0) {
+				ps = connection.prepareStatement(
+						"update owner set first_name=?, last_name=?, email_address=?, phone_number=?, user_name=?, password=?, profit=? "
+								+ "where id = ? returning id");
+
+			} else {
+
+				ps = connection.prepareStatement(
+						"insert into owner (first_name, last_name, email_address, phone_number, user_name, password, profit) "
+								+ "values (?, ?, ?, ?, ?, ?, ?) returning id");
+
+			}
+
+			ps.setString(1, model.getFirstName());
+			ps.setString(2, model.getLastName());
+			ps.setString(3, model.getEmailAddress());
+			ps.setString(4, model.getPhoneNumber());
+			ps.setString(5, model.getUserName());
+			ps.setString(6, model.getPassword());
+			ps.setDouble(7, model.getProfit());
+
+			if (model.getId() > 0) {
+				ps.setLong(8, model.getId());
+			}
+
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				model.setId(rs.getLong(1));
+			}
+			rs.close();
 
 			connection.commit();
 
@@ -176,7 +219,7 @@ public class JDBCOwnerDAO implements OwnerDAO {
 	}
 
 	@Override
-	public Collection<Owner> searchByName(String query) {
+	public Collection<Owner> searchByUserName(String query) {
 		if (query == null) {
 			query = "";
 		} else {
@@ -188,9 +231,7 @@ public class JDBCOwnerDAO implements OwnerDAO {
 		Collection<Owner> result = new LinkedList<>();
 
 		try (ResultSet rs = connection.createStatement()
-				.executeQuery("select * from owner "
-						+ "where lower(first_name || ' ' || last_name) like '%"
-						+ query.toLowerCase() + "%'")) {
+				.executeQuery("select * from owner " + "where lower(user_name) like '%" + query.toLowerCase() + "%'")) {
 
 			while (rs.next()) {
 				result.add(extractOwner(rs));
@@ -208,18 +249,8 @@ public class JDBCOwnerDAO implements OwnerDAO {
 		try {
 			Class.forName("org.postgresql.Driver").newInstance();
 
-			String url = new StringBuilder()
-					.append("jdbc:")
-					.append("postgresql")
-					.append("://")
-					.append(host)
-					.append(":")
-					.append(port)
-					.append("/")
-					.append(dbName)
-					.append("?user=")
-					.append(userName)
-					.append("&password=")
+			String url = new StringBuilder().append("jdbc:").append("postgresql").append("://").append(host).append(":")
+					.append(port).append("/").append(dbName).append("?user=").append(userName).append("&password=")
 					.append(pass).toString();
 			Connection result = DriverManager.getConnection(url);
 			result.setAutoCommit(false);
@@ -241,12 +272,9 @@ public class JDBCOwnerDAO implements OwnerDAO {
 		owner.setUserName(rs.getString("user_name"));
 		owner.setPassword(rs.getString("password"));
 		owner.setProfit(rs.getDouble("profit"));
-		
-		
+
 		return owner;
 
 	}
-
-
 
 }

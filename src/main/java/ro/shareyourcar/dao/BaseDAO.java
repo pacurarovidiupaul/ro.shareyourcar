@@ -12,6 +12,8 @@ public interface BaseDAO <T extends AbstractModel> {
 	
 	T update(T model);
 	
+	T updateEdit(T model);
+	
 	boolean delete(T model);
 
 }

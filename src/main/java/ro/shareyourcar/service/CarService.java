@@ -10,31 +10,31 @@ import ro.shareyourcar.domain.Car;
 
 @Service
 public class CarService {
-	
+
 	@Autowired
 	private CarDAO dao;
-	
+
 	public Collection<Car> listAll() {
 		return dao.getAll();
 	}
 
-	public Collection<Car> search(String query){
+	public Collection<Car> search(String query) {
 		return dao.searchByName(query);
-		
+
 	}
-	
-		
+
 	public void showFuelLevel() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public CarDAO getDao() {
 		return dao;
 	}
+
 	public void setDao(CarDAO dao) {
-		this.dao=dao;
-		
+		this.dao = dao;
+
 	}
 
 }

@@ -9,8 +9,8 @@
 	type="text/css">
 <title>Share your car!</title>
 </head>
-<h1> Your account has been created! </h1>
-<body class="alert-normal">
+<h1> Your account is created! </h1>
+<body class="lc-block">
 <a href="/home"> Back to login page!</a>	
 	</div>
 </body>

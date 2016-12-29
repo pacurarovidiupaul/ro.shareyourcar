@@ -6,15 +6,14 @@ import java.util.LinkedList;
 
 import org.springframework.util.StringUtils;
 
-
 import ro.shareyourcar.dao.OwnerDAO;
 import ro.shareyourcar.domain.Owner;
 
 //@Component
 public class IMOwnerDAO extends IMBaseDAO<Owner> implements OwnerDAO {
-	
+
 	@Override
-	public Collection<Owner> searchByName(String query) {
+	public Collection<Owner> searchByUserName(String query) {
 		if (StringUtils.isEmpty(query)) {
 			return getAll();
 		}
@@ -22,7 +21,7 @@ public class IMOwnerDAO extends IMBaseDAO<Owner> implements OwnerDAO {
 		Collection<Owner> all = new LinkedList<Owner>(getAll());
 		for (Iterator<Owner> it = all.iterator(); it.hasNext();) {
 			Owner owner = it.next();
-			String ss = owner.getFirstName() + " " + owner.getLastName();
+			String ss = owner.getUserName();
 			if (!ss.toLowerCase().contains(query.toLowerCase())) {
 				it.remove();
 			}

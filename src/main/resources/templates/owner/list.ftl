@@ -20,7 +20,10 @@
  
   <table class="table">
 	<tr>
+	    <th>Name</td>
 		<th>Your Profit</th>
+		<th>Edit your profile</th>
+		<th>Add a car</th>
 		<th></th>
 		
 	</tr>
@@ -28,6 +31,7 @@
 	[#if owners??]
 		[#list owners as owner] 
 			<tr>
+			    <td>${owner.lastName}</td>
 				<td>${owner.profit}</td>
 				<td><a href="/owner/edit?id=${owner.id?c}">
 				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

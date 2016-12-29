@@ -19,7 +19,7 @@
 
 <div class="panel panel-default" style="width:50%; margin:0 auto;">
   <div class="panel-heading">
-    <h3 class="panel-title">Add Owner</h3>
+    <h3 class="panel-title">Edit Owner</h3>
   </div>
   <div class="panel-body">
   
@@ -36,7 +36,7 @@
     </div>
 	[/#if]
 
-    <form action="/owner/save" method="POST">
+    <form action="/owner/update" method="POST">
 			<div class="input-group" style="width:80%">
 		  		<input type="text" name="firstName" type="input" value="${owner.firstName!''}" class="form-control" placeholder="First Name" aria-describedby="basic-addon1">
 			</div>
@@ -68,8 +68,8 @@
 			
 			
 			<input type="hidden" name="id" value="[#if owner.id??]${owner.id?c}[/#if]">
-			<input type="submit" value="Save">
-			<a href="/home">Cancel</a>
+			<input type="submit" value="Update">
+			<a href="/owner">Cancel</a>
 		</form>
   </div>
 </div>
