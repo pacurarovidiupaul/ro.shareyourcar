@@ -22,6 +22,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.jdbcAuthentication().dataSource(dataSource)
 				.usersByUsernameQuery("select user_name, password, enabled from public.owner where user_name=?")
 				.authoritiesByUsernameQuery("select user_name, role from public.owner_role where user_name=?");
+		
+		auth.jdbcAuthentication().dataSource(dataSource)
+		.usersByUsernameQuery("select user_name, password, enabled from public.client where user_name=?")
+		.authoritiesByUsernameQuery("select user_name, role from public.client_role where user_name=?");
 
 	}
 
@@ -31,7 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/owner").access("hasRole('ROLE_OWNER')").antMatchers("/owner/")
 				.access("hasRole('ROLE_OWNER')").antMatchers("/owner/edit").access("hasRole('ROLE_OWNER')")
 				.antMatchers("/owner/edit/").access("hasRole('ROLE_OWNER')").antMatchers("/client")
-				.access("hasRole('ROLE_CLIENT')").antMatchers("/client/").access("hasRole('ROLE_CLIENT')").anyRequest()
+				.access("hasRole('ROLE_CLIENT')").antMatchers("/client/").access("hasRole('ROLE_CLIENT')")
+				.antMatchers("/client/edit").access("hasRole('ROLE_CLIENT')")
+				.antMatchers("/client/edit/").access("hasRole('ROLE_CLIENT')").anyRequest()
 				.permitAll().and().formLogin().loginPage("/login").usernameParameter("username")
 				.passwordParameter("password").and().logout().logoutSuccessUrl("/login?logout").and()
 				.exceptionHandling().accessDeniedPage("/403").and().csrf().disable();

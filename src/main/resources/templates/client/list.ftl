@@ -16,28 +16,24 @@
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Owner Main</div>
+  <div class="panel-heading">Client Main</div>
  
   <table class="table">
 	<tr>
 	    <th>Name</td>
-		<th>Your Profit</th>
+		<th>Your Wallet</th>
 		<th>Edit your profile</th>
-		<th>Add a car</th>
 		<th></th>
 		
 	</tr>
 	<!-- begin iteration -->
-	[#if owners??]
-		[#list owners as owner] 
+	[#if clients??]
+		[#list clients as client] 
 			<tr>
-			    <td>${owner.lastName}</td>
-				<td>${owner.profit}</td>
-				<td><a href="/owner/edit?id=${owner.id?c}">
+			    <td>${client.lastName}</td>
+				<td>${client.wallet}</td>
+				<td><a href="/client/edit?id=${client.id?c}">
 				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-				</a></td>
-				<td><a href="/car/add">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> CAR
 				</a></td>
 			</tr>
 		[/#list]

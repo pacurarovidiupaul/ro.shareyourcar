@@ -1,6 +1,6 @@
 package ro.shareyourcar.domain;
 
-public class Client {
+public class Client extends AbstractModel {
 
 	private String firstName;
 	private String lastName;

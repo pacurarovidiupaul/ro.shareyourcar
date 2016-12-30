@@ -10,9 +10,9 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import ro.shareyourcar.dao.CarDAO;
+import ro.shareyourcar.dao.ClientDAO;
 import ro.shareyourcar.dao.OwnerDAO;
-import ro.shareyourcar.dao.db.JDBCCarDAO;
+import ro.shareyourcar.dao.db.JDBCClientDAO;
 import ro.shareyourcar.dao.db.JDBCOwnerDAO;
 
 @Configuration
@@ -51,9 +51,9 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public CarDAO carDAO() {
+	public ClientDAO carDAO() {
 
-		return new JDBCCarDAO("localhost", "5432", "Shareyourcar", "postgres", "Z80Spectrum");
+		return new JDBCClientDAO("localhost", "5432", "Shareyourcar", "postgres", "Z80Spectrum");
 	}
 
 	@Bean
@@ -62,6 +62,6 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 		resolver.setPrefix("/WEB-INF/jsp/");
 		resolver.setSuffix(".jsp");
 		return resolver;
-	}
+	}	
 
 }

@@ -1,3 +1,25 @@
+body.bmw { 
+  background-image: url("/images/bmw.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+ 
+}
+
+body.mercedes { 
+  background-image: url("/images/mercedes.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+ 
+}
+
+
+
 body.security-app {
     text-align: center;
     overflow: hidden;
@@ -5,7 +27,6 @@ body.security-app {
     width:100%;
     background:#edecec;
 }
-
 
 .lc-block {
     padding: 35px 55px 35px;
@@ -109,6 +130,7 @@ font-size:18px;padding:1.2em 2.5em 1em
     margin-left: 30%;
     margin-right: 30%;
 }
+
 .alert-danger {
     padding: 15px;
     font-size: 16px;
@@ -131,3 +153,7 @@ font-size:18px;padding:1.2em 2.5em 1em
     
     
 }
+
+
+
+

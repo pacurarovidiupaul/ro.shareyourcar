@@ -10,7 +10,7 @@
 	type="text/css">
 <title>Share your car!</title>
 </head>
-<body class="security-app">
+<body class="mercedes">
 	<div class="details">
 		<h2>Share your car!</h2>
 		<a href="/owner/add" class="button green small">Sign UP for Owner</a> 
