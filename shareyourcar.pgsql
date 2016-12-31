@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.1
--- Dumped by pg_dump version 9.6.1
+-- Dumped from database version 9.6.0
+-- Dumped by pg_dump version 9.6.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -33,82 +33,6 @@ SET search_path = public, pg_catalog;
 SET default_tablespace = '';
 
 SET default_with_oids = false;
-
---
--- Name: client; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE client (
-    first_name character varying NOT NULL,
-    last_name character varying NOT NULL,
-    email_address character varying NOT NULL,
-    phone_number character varying NOT NULL,
-    user_name character varying NOT NULL,
-    password character varying NOT NULL,
-    age integer NOT NULL,
-    wallet double precision NOT NULL,
-    current_location character varying NOT NULL,
-    id integer NOT NULL,
-    enabled smallint DEFAULT 1 NOT NULL
-);
-
-
-ALTER TABLE client OWNER TO postgres;
-
---
--- Name: client_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE client_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE client_id_seq OWNER TO postgres;
-
---
--- Name: client_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE client_id_seq OWNED BY client.id;
-
-
---
--- Name: client_role; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE client_role (
-    client_role_id integer NOT NULL,
-    user_name character varying NOT NULL,
-    role character varying NOT NULL
-);
-
-
-ALTER TABLE client_role OWNER TO postgres;
-
---
--- Name: client_role_client_role_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE client_role_client_role_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE client_role_client_role_id_seq OWNER TO postgres;
-
---
--- Name: client_role_client_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE client_role_client_role_id_seq OWNED BY client_role.client_role_id;
-
 
 --
 -- Name: owner; Type: TABLE; Schema: public; Owner: postgres
@@ -185,20 +109,6 @@ ALTER SEQUENCE owner_role_owner_role_id_seq OWNED BY owner_role.owner_role_id;
 
 
 --
--- Name: client id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY client ALTER COLUMN id SET DEFAULT nextval('client_id_seq'::regclass);
-
-
---
--- Name: client_role client_role_id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY client_role ALTER COLUMN client_role_id SET DEFAULT nextval('client_role_client_role_id_seq'::regclass);
-
-
---
 -- Name: owner id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -213,43 +123,17 @@ ALTER TABLE ONLY owner_role ALTER COLUMN owner_role_id SET DEFAULT nextval('owne
 
 
 --
--- Data for Name: client; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY client (first_name, last_name, email_address, phone_number, user_name, password, age, wallet, current_location, id, enabled) FROM stdin;
-Pacurar	Ovidiu	pacurarovidiupaul@live.com	0740013456	Ovidiu	maverick	35	200	Cluj	1	1
-\.
-
-
---
--- Name: client_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('client_id_seq', 1, true);
-
-
---
--- Data for Name: client_role; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY client_role (client_role_id, user_name, role) FROM stdin;
-1	Ovidiu	ROLE_CLIENT
-\.
-
-
---
--- Name: client_role_client_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('client_role_client_role_id_seq', 1, true);
-
-
---
 -- Data for Name: owner; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY owner (first_name, last_name, email_address, phone_number, user_name, password, profit, id, enabled) FROM stdin;
-Pacurar	Sergiu	pacurarsergiu@yahoo.com	0740013456	Sergiu	vladimir	0	2	1
+Pacurar	Ovidiu	pacurarovidiupaul@live.com	+40740013456	Ovidiu	maverick	0	1	1
+Pacurar	Sergiu	pacurarsergiu@yahoo.com	0744285504	Sergiu	vladimir	0	2	1
+Gavris	Gelu	gavrisgelu@yahoo.com	+40740013456	Gavris	vremuribune	0	3	1
+Mihai	Baciu	mihaibaciu@yahoo.com	0742444254	Mihai	faraparola	0	4	1
+Popescu	Marian	popescumarian@yahoo.com	0723645112	Marian	marian	0	6	1
+Tudor	Pacurar	pacurartudor@live.com	0740013456	Tudor	maverick	0	7	1
+Emilian	Pop	popemilian@yahoo.com	0743233444	Emilian	maverick	0	8	1
 \.
 
 
@@ -257,7 +141,7 @@ Pacurar	Sergiu	pacurarsergiu@yahoo.com	0740013456	Sergiu	vladimir	0	2	1
 -- Name: owner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('owner_id_seq', 2, true);
+SELECT pg_catalog.setval('owner_id_seq', 8, true);
 
 
 --
@@ -265,7 +149,13 @@ SELECT pg_catalog.setval('owner_id_seq', 2, true);
 --
 
 COPY owner_role (owner_role_id, user_name, role) FROM stdin;
+1	Ovidiu	ROLE_OWNER
 2	Sergiu	ROLE_OWNER
+3	Gavris	ROLE_OWNER
+4	Mihai	ROLE_OWNER
+6	Marian	ROLE_OWNER
+7	Tudor	ROLE_OWNER
+8	Emilian	ROLE_OWNER
 \.
 
 
@@ -273,23 +163,7 @@ COPY owner_role (owner_role_id, user_name, role) FROM stdin;
 -- Name: owner_role_owner_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('owner_role_owner_role_id_seq', 2, true);
-
-
---
--- Name: client client_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY client
-    ADD CONSTRAINT client_pkey PRIMARY KEY (id);
-
-
---
--- Name: client_role client_role_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY client_role
-    ADD CONSTRAINT client_role_pkey PRIMARY KEY (user_name, client_role_id, role);
+SELECT pg_catalog.setval('owner_role_owner_role_id_seq', 8, true);
 
 
 --
@@ -314,22 +188,6 @@ ALTER TABLE ONLY owner_role
 
 ALTER TABLE ONLY owner_role
     ADD CONSTRAINT uni_user_name_role UNIQUE (role, user_name);
-
-
---
--- Name: client_role uni_user_name_role_client; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY client_role
-    ADD CONSTRAINT uni_user_name_role_client UNIQUE (role, user_name);
-
-
---
--- Name: client_role fk_user_name_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY client_role
-    ADD CONSTRAINT fk_user_name_id FOREIGN KEY (client_role_id) REFERENCES client(id);
 
 
 --
