@@ -16,33 +16,45 @@
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Owner Main</div>
+  <div class="panel-heading">Car Main</div>
  
   <table class="table">
 	<tr>
-	    <th>Name</td>
-		<th>Your Profit</th>
-		<th>Edit your profile</th>
-		<th>Add a car</th>
-		<th>See Cars</th>
-		<th></th>
+	    	<th>License plate</th>
+			<th>Producer</th>	
+			<th>Model</th>
+			<th>Type</th>
+			<th>Year Of Production</th>
+			<th>Nr Of Seats</th>
+			<th>Fuel Tank (litres)</th>
+			<th>Consumption (l/km)</th>
+			<th>Actual Position</th>
+			<th>Price / km</th>
+			<th>Booked</th>
+			<th>Delete Car</th>	
+			<th></th>
 		
 	</tr>
 	<!-- begin iteration -->
-	[#if owners??]
-		[#list owners as owner] 
+	[#if cars??]
+		[#list cars as car] 
 			<tr>
-			    <td>${owner.lastName}</td>
-				<td>${owner.profit}</td>
-				<td><a href="/owner/edit?id=${owner.id?c}">
+			    <td>${car.licensePlate}</td>
+				<td>${car.producer}</td>
+				<td>${car.model}</td>
+				<td>${car.type}</td>
+				<td>${car.yearOfProduction}</td>
+				<td>${car.nrOfSeats}</td>
+				<td>${car.fuelTankCap}</td>
+				<td>${car.consumption}</td>
+				<td>${car.consumption}</td>
+				<td>${car.price}</td>
+				<td>${car.booked?c}</td>
+		
+				<td><a href="/car/delete?id=${car.id?c}">
 				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 				</a></td>
-				<td><a href="/car/add">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> CAR
-				</a></td>
-				<td><a href="/car/show">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> LIST
-				</a></td>
+				
 			</tr>
 		[/#list]
 	[/#if]

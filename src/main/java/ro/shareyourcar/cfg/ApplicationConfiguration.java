@@ -10,8 +10,10 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import ro.shareyourcar.dao.CarDAO;
 import ro.shareyourcar.dao.ClientDAO;
 import ro.shareyourcar.dao.OwnerDAO;
+import ro.shareyourcar.dao.db.JDBCCarDAO;
 import ro.shareyourcar.dao.db.JDBCClientDAO;
 import ro.shareyourcar.dao.db.JDBCOwnerDAO;
 
@@ -39,7 +41,7 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 
 		dataSource.setUrl(url);
 		dataSource.setUsername("postgres");
-		dataSource.setPassword("Z80Spectrum");
+		dataSource.setPassword("maverick");
 		return dataSource;
 
 	}
@@ -47,13 +49,19 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 	@Bean
 	public OwnerDAO ownerDAO() {
 
-		return new JDBCOwnerDAO("localhost", "5432", "Shareyourcar", "postgres", "Z80Spectrum");
+		return new JDBCOwnerDAO("localhost", "5432", "Shareyourcar", "postgres", "maverick");
+	}
+	
+	@Bean
+	public CarDAO carDAO() {
+
+		return new JDBCCarDAO("localhost", "5432", "Shareyourcar", "postgres", "maverick");
 	}
 
 	@Bean
-	public ClientDAO carDAO() {
+	public ClientDAO clientDAO() {
 
-		return new JDBCClientDAO("localhost", "5432", "Shareyourcar", "postgres", "Z80Spectrum");
+		return new JDBCClientDAO("localhost", "5432", "Shareyourcar", "postgres", "maverick");
 	}
 
 	@Bean

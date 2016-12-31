@@ -1,104 +1,152 @@
 package ro.shareyourcar.domain;
 
-public class Car extends AbstractModel {
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+public class Car extends AbstractModel {
+	
+	
+	@NotEmpty
+	@Size(min = 2, max = 60)
+	private String licensePlate;
 	private String producer;
 	private String model;
 	private String type;
-	private String yearOfProduction;
-	private int seats;
-	private double fuelTankCapacity;
-	private double consumptionPerKm;
-	private String startPosition;
-	private String endPosition;
-	private String pricePerKm;
-
+	private int yearOfProduction;
+	private int nrOfSeats;
+	private double fuelTankCap;
+	private double consumption;
+	private String startPositionLat;
+	private String startPositionLong;
+	private String endPositionLat;
+	private String endPositionLong;
+	private double price;
+	private boolean booked;
+	
+	
+	
 	public String getProducer() {
 		return producer;
 	}
-
 	public void setProducer(String producer) {
 		this.producer = producer;
 	}
-
 	public String getModel() {
 		return model;
 	}
-
 	public void setModel(String model) {
 		this.model = model;
 	}
-
+	public String getLicensePlate() {
+		return licensePlate;
+	}
+	public void setLicensePlate(String licensePlate) {
+		this.licensePlate = licensePlate;
+	}
 	public String getType() {
 		return type;
 	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	public String getYearOfProduction() {
+	public int getYearOfProduction() {
 		return yearOfProduction;
 	}
-
-	public void setYearOfProduction(String yearOfProduction) {
+	public void setYearOfProduction(int yearOfProduction) {
 		this.yearOfProduction = yearOfProduction;
 	}
-
-	public int getSeats() {
-		return seats;
+	public int getNrOfSeats() {
+		return nrOfSeats;
+	}
+	public void setNrOfSeats(int nrOfSeats) {
+		this.nrOfSeats = nrOfSeats;
+	}
+	public double getFuelTankCap() {
+		return fuelTankCap;
+	}
+	public void setFuelTankCap(int fuelTankCap) {
+		this.fuelTankCap = fuelTankCap;
+	}
+	public double getConsumption() {
+		return consumption;
+	}
+	public void setConsumption(int consumption) {
+		this.consumption = consumption;
 	}
 
-	public void setSeats(int seats) {
-		this.seats = seats;
+	public double getPrice() {
+		return price;
 	}
-
-	public double getFuelTankCapacity() {
-		return fuelTankCapacity;
+	public void setPrice(int price) {
+		this.price = price;
 	}
-
-	public void setFuelTankCapacity(double fuelTankCapacity) {
-		this.fuelTankCapacity = fuelTankCapacity;
+	public boolean isBooked() {
+		return booked;
 	}
-
-	public double getConsumptionPerKm() {
-		return consumptionPerKm;
+	public void setBooked(boolean booked) {
+		this.booked = booked;
 	}
-
-	public void setConsumptionPerKm(double consumptionPerKm) {
-		this.consumptionPerKm = consumptionPerKm;
+	public String getStartPositionLong() {
+		return startPositionLong;
 	}
-
-	public String getStartPosition() {
-		return startPosition;
+	public void setStartPositionLong(String startPositionLong) {
+		this.startPositionLong = startPositionLong;
 	}
-
-	public void setStartPosition(String startPosition) {
-		this.startPosition = startPosition;
+	public String getStartPositionLat() {
+		return startPositionLat;
 	}
-
-	public String getEndPosition() {
-		return endPosition;
+	public void setStartPositionLat(String startPositionLat) {
+		this.startPositionLat = startPositionLat;
 	}
-
-	public void setEndPosition(String endPosition) {
-		this.endPosition = endPosition;
+	public String getEndPositionLong() {
+		return endPositionLong;
 	}
-
-	public String getPricePerKm() {
-		return pricePerKm;
+	public void setEndPositionLong(String endPositionLong) {
+		this.endPositionLong = endPositionLong;
 	}
-
-	public void setPricePerKm(String pricePerKm) {
-		this.pricePerKm = pricePerKm;
+	public String getEndPositionLat() {
+		return endPositionLat;
 	}
-
+	public void setEndPositionLat(String endPositionLat) {
+		this.endPositionLat = endPositionLat;
+	}
 	@Override
 	public String toString() {
-		return "Car [producer=" + producer + ", model=" + model + ", type=" + type + ", yearOfProduction="
-				+ yearOfProduction + ", seats=" + seats + ", fuelTankCapacity=" + fuelTankCapacity
-				+ ", consumptionPerKm=" + consumptionPerKm + ", startPosition=" + startPosition + ", endPosition="
-				+ endPosition + ", pricePerKm=" + pricePerKm + "]";
+		return "Car [licensePlate=" + licensePlate + ", producer=" + producer + ", model=" + model + ", type=" + type
+				+ ", yearOfProduction=" + yearOfProduction + ", nrOfSeats=" + nrOfSeats + ", fuelTankCap=" + fuelTankCap
+				+ ", consumption=" + consumption + ", startPositionLat=" + startPositionLat + ", startPositionLong="
+				+ startPositionLong + ", endPositionLat=" + endPositionLat + ", endPositionLong=" + endPositionLong
+				+ ", price=" + price + ", booked=" + booked + "]";
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (booked ? 1231 : 1237);
+		long temp;
+		temp = Double.doubleToLongBits(consumption);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((endPositionLat == null) ? 0 : endPositionLat.hashCode());
+		result = prime * result + ((endPositionLong == null) ? 0 : endPositionLong.hashCode());
+		temp = Double.doubleToLongBits(fuelTankCap);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((licensePlate == null) ? 0 : licensePlate.hashCode());
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + nrOfSeats;
+		temp = Double.doubleToLongBits(price);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((producer == null) ? 0 : producer.hashCode());
+		result = prime * result + ((startPositionLat == null) ? 0 : startPositionLat.hashCode());
+		result = prime * result + ((startPositionLong == null) ? 0 : startPositionLong.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + yearOfProduction;
+		return result;
+	}
+	
+	
+	
+	
 
 }
+	

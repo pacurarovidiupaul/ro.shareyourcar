@@ -3,6 +3,8 @@ package ro.shareyourcar.mvc;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -10,8 +12,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-import ro.shareyourcar.domain.Owner;
-import ro.shareyourcar.service.OwnerService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+import ro.shareyourcar.domain.Car;
+import ro.shareyourcar.service.CarService;
 import ro.shareyourcar.service.ValidationException;
 
 @Controller
@@ -19,35 +30,35 @@ import ro.shareyourcar.service.ValidationException;
 public class CarController {
 
 	@Autowired
-	private OwnerService ownerService;
+	private CarService carService;
 
 	@RequestMapping("add")
 	public ModelAndView renderAdd() {
-		ModelAndView modelAndView = new ModelAndView("owner/add");
-		modelAndView.addObject("owner", new Owner());
+		ModelAndView modelAndView = new ModelAndView("car/add");
+		modelAndView.addObject("car", new Car());
 		return modelAndView;
 	}
 
 	@RequestMapping("edit")
 	public ModelAndView renderEdit(long id) {
-		ModelAndView modelAndView = new ModelAndView("owner/add");
-		modelAndView.addObject("owner", ownerService.get(id));
+		ModelAndView modelAndView = new ModelAndView("car/add");
+		modelAndView.addObject("car", carService.get(id));
 		return modelAndView;
 	}
 
 	@RequestMapping("save")
-	public ModelAndView save(@Valid @ModelAttribute("owner") Owner owner, BindingResult bindingResult) {
+	public ModelAndView save(@Valid @ModelAttribute("car") Car car, BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
 		boolean hasErros = false;
 		if (!bindingResult.hasErrors()) {
 			try {
-				ownerService.save(owner);
+				carService.save(car);
 
 				modelAndView = new ModelAndView();
-				modelAndView.setView(new RedirectView(""));
+				modelAndView.setView(new RedirectView("show"));
 			} catch (ValidationException ex) {
 				for (String msg : ex.getCauses()) {
-					bindingResult.addError(new ObjectError("owner", msg));
+					bindingResult.addError(new ObjectError("car", msg));
 				}
 				hasErros = true;
 			}
@@ -56,18 +67,25 @@ public class CarController {
 		}
 
 		if (hasErros) {
-			modelAndView = new ModelAndView("owner/add");
-			modelAndView.addObject("owner", owner);
+			modelAndView = new ModelAndView("car/add");
+			modelAndView.addObject("car", car);
 			modelAndView.addObject("errors", bindingResult.getAllErrors());
 		}
 
 		return modelAndView;
 	}
 
-	@RequestMapping("")
+	@RequestMapping("show")
 	public ModelAndView list() throws Exception {
-		ModelAndView modelAndView = new ModelAndView("owner/list");
-		modelAndView.addObject("owners", ownerService.listAll());
+		ModelAndView modelAndView = new ModelAndView("car/list");
+		modelAndView.addObject("cars", carService.listAll());
+		return modelAndView;
+	}
+	
+	@RequestMapping("delete")
+	public ModelAndView delete(long id) throws Exception {
+		ModelAndView modelAndView = new ModelAndView("car/list");
+		modelAndView.addObject("cars", carService.get(id));
 		return modelAndView;
 	}
 
