@@ -11,6 +11,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="[@spring.url '/js/bootstrap.min.js' /] "></script>
 
+
 </head>
 [#escape x as x?html]
 
@@ -33,7 +34,7 @@
 		[#list owners as owner] 
 			<tr>
 			    <td>${owner.lastName}</td>
-				<td>${owner.profit}</td>
+				<td>${owner.profit}</td> 
 				<td><a href="/owner/edit?id=${owner.id?c}">
 				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 				</a></td>

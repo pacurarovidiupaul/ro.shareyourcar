@@ -11,9 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ro.shareyourcar.dao.CarDAO;
-import ro.shareyourcar.dao.OwnerDAO;
 import ro.shareyourcar.domain.Car;
-import ro.shareyourcar.domain.Owner;
 
 public class JDBCCarDAO implements CarDAO {
 

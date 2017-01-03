@@ -123,40 +123,6 @@ ALTER SEQUENCE client_id_seq OWNED BY client.id;
 
 
 --
--- Name: client_role; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE client_role (
-    client_role_id integer NOT NULL,
-    user_name character varying NOT NULL,
-    role character varying NOT NULL
-);
-
-
-ALTER TABLE client_role OWNER TO postgres;
-
---
--- Name: client_role_client_role_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE client_role_client_role_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE client_role_client_role_id_seq OWNER TO postgres;
-
---
--- Name: client_role_client_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE client_role_client_role_id_seq OWNED BY client_role.client_role_id;
-
-
---
 -- Name: owner; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -197,23 +163,23 @@ ALTER SEQUENCE owner_id_seq OWNED BY owner.id;
 
 
 --
--- Name: owner_role; Type: TABLE; Schema: public; Owner: postgres
+-- Name: user_role; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE owner_role (
-    owner_role_id integer NOT NULL,
-    user_name character varying NOT NULL,
-    role character varying NOT NULL
+CREATE TABLE user_role (
+    user_role_id integer NOT NULL,
+    user_name character varying(60) NOT NULL,
+    role character varying(60) NOT NULL
 );
 
 
-ALTER TABLE owner_role OWNER TO postgres;
+ALTER TABLE user_role OWNER TO postgres;
 
 --
--- Name: owner_role_owner_role_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: user_role_user_role_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE owner_role_owner_role_id_seq
+CREATE SEQUENCE user_role_user_role_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -221,13 +187,48 @@ CREATE SEQUENCE owner_role_owner_role_id_seq
     CACHE 1;
 
 
-ALTER TABLE owner_role_owner_role_id_seq OWNER TO postgres;
+ALTER TABLE user_role_user_role_id_seq OWNER TO postgres;
 
 --
--- Name: owner_role_owner_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: user_role_user_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE owner_role_owner_role_id_seq OWNED BY owner_role.owner_role_id;
+ALTER SEQUENCE user_role_user_role_id_seq OWNED BY user_role.user_role_id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    user_name character varying(60) NOT NULL,
+    password character varying(60) NOT NULL,
+    enabled smallint DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
@@ -245,13 +246,6 @@ ALTER TABLE ONLY client ALTER COLUMN id SET DEFAULT nextval('client_id_seq'::reg
 
 
 --
--- Name: client_role client_role_id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY client_role ALTER COLUMN client_role_id SET DEFAULT nextval('client_role_client_role_id_seq'::regclass);
-
-
---
 -- Name: owner id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -259,10 +253,17 @@ ALTER TABLE ONLY owner ALTER COLUMN id SET DEFAULT nextval('owner_id_seq'::regcl
 
 
 --
--- Name: owner_role owner_role_id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: user_role user_role_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY owner_role ALTER COLUMN owner_role_id SET DEFAULT nextval('owner_role_owner_role_id_seq'::regclass);
+ALTER TABLE ONLY user_role ALTER COLUMN user_role_id SET DEFAULT nextval('user_role_user_role_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
@@ -277,7 +278,7 @@ COPY car (license_plate, producer, model, type, year_of_production, nr_of_seats,
 -- Name: car_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('car_id_seq', 1, false);
+SELECT pg_catalog.setval('car_id_seq', 1, true);
 
 
 --
@@ -286,6 +287,8 @@ SELECT pg_catalog.setval('car_id_seq', 1, false);
 
 COPY client (first_name, last_name, email_address, phone_number, user_name, password, age, wallet, id, enabled, current_location) FROM stdin;
 Pacurar	Ovidiu	pacurarovidiupaul@live.com	0740013456	Ovidiu	maverick	35	200	1	1	\N
+Pacurar	Mihaela	pacurarmihaela@yahoo.com	0722128633	Mihaela	Tudor	0	0	2	1	Cluj-Napoca
+Pacurar ex Morar	Monica	pacurarmonica@yahoo.com	072344245	Monica	Tudor	0	0	3	1	Cluj-Napoca
 \.
 
 
@@ -293,23 +296,7 @@ Pacurar	Ovidiu	pacurarovidiupaul@live.com	0740013456	Ovidiu	maverick	35	200	1	1	
 -- Name: client_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('client_id_seq', 1, true);
-
-
---
--- Data for Name: client_role; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY client_role (client_role_id, user_name, role) FROM stdin;
-1	Ovidiu	ROLE_CLIENT
-\.
-
-
---
--- Name: client_role_client_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('client_role_client_role_id_seq', 1, true);
+SELECT pg_catalog.setval('client_id_seq', 3, true);
 
 
 --
@@ -317,9 +304,8 @@ SELECT pg_catalog.setval('client_role_client_role_id_seq', 1, true);
 --
 
 COPY owner (first_name, last_name, email_address, phone_number, user_name, password, profit, id, enabled) FROM stdin;
-Pacurar	Sergiu	pacurarsergiu@yahoo.com	0740013456	Sergiu	vladimir	0	2	1
-Tudor	Petrovan	tudor.petrovan@gmail.com	0743637751	Tudor	sekotudor	0	3	1
-Mihai	Pop	mihaipop@pop.ro	234667880	Mihai	mihai	0	4	1
+Pacurar	Sergiu	pacurarovidiupaul@live.com	0744285504	Sergiu	vladimir	0	3	1
+Pacurar	Ovidiu	pacurarovidiupaul@live.com	0740013456	Ovidiu	maverick	0	1	1
 \.
 
 
@@ -327,25 +313,45 @@ Mihai	Pop	mihaipop@pop.ro	234667880	Mihai	mihai	0	4	1
 -- Name: owner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('owner_id_seq', 4, true);
+SELECT pg_catalog.setval('owner_id_seq', 3, true);
 
 
 --
--- Data for Name: owner_role; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: user_role; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY owner_role (owner_role_id, user_name, role) FROM stdin;
-2	Sergiu	ROLE_OWNER
-3	Tudor	ROLE_OWNER
-4	Mihai	ROLE_OWNER
+COPY user_role (user_role_id, user_name, role) FROM stdin;
+1	Ovidiu	ROLE_OWNER
+3	Sergiu	ROLE_OWNER
+4	Mihaela	ROLE_CLIENT
+5	Monica	ROLE_CLIENT
 \.
 
 
 --
--- Name: owner_role_owner_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: user_role_user_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('owner_role_owner_role_id_seq', 4, true);
+SELECT pg_catalog.setval('user_role_user_role_id_seq', 6, true);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users (id, user_name, password, enabled) FROM stdin;
+3	Sergiu	vladimir	1
+4	Mihaela	Tudor	1
+5	Monica	Tudor	1
+1	Ovidiu	maverick	1
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 5, true);
 
 
 --
@@ -365,14 +371,6 @@ ALTER TABLE ONLY client
 
 
 --
--- Name: client_role client_role_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY client_role
-    ADD CONSTRAINT client_role_pkey PRIMARY KEY (user_name, client_role_id, role);
-
-
---
 -- Name: owner owner_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -381,43 +379,35 @@ ALTER TABLE ONLY owner
 
 
 --
--- Name: owner_role owner_role_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_role uni_user_name_role_user; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY owner_role
-    ADD CONSTRAINT owner_role_pkey PRIMARY KEY (owner_role_id, user_name, role);
-
-
---
--- Name: owner_role uni_user_name_role; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY owner_role
-    ADD CONSTRAINT uni_user_name_role UNIQUE (role, user_name);
+ALTER TABLE ONLY user_role
+    ADD CONSTRAINT uni_user_name_role_user UNIQUE (user_name, role);
 
 
 --
--- Name: client_role uni_user_name_role_client; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_role user_role_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY client_role
-    ADD CONSTRAINT uni_user_name_role_client UNIQUE (role, user_name);
-
-
---
--- Name: client_role fk_user_name_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY client_role
-    ADD CONSTRAINT fk_user_name_id FOREIGN KEY (client_role_id) REFERENCES client(id);
+ALTER TABLE ONLY user_role
+    ADD CONSTRAINT user_role_pkey PRIMARY KEY (user_role_id);
 
 
 --
--- Name: owner_role fk_user_name_idx; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY owner_role
-    ADD CONSTRAINT fk_user_name_idx FOREIGN KEY (owner_role_id) REFERENCES owner(id);
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_role fk_user_name_idx; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_role
+    ADD CONSTRAINT fk_user_name_idx FOREIGN KEY (user_role_id) REFERENCES users(id);
 
 
 --

@@ -89,7 +89,8 @@ public class JDBCClientDAO implements ClientDAO {
 		Connection connection = newConnection();
 		try {
 			PreparedStatement ps = null;
-			PreparedStatement psSecond = null;
+			PreparedStatement psSecond=null;
+			PreparedStatement psThird = null;
 			if (model.getId() > 0) {
 				ps = connection.prepareStatement(
 						"update client set first_name=?, last_name=?, email_address=?, phone_number=?, user_name=?, password=?, age=?, wallet=?, current_location=? "
@@ -100,9 +101,13 @@ public class JDBCClientDAO implements ClientDAO {
 				ps = connection.prepareStatement(
 						"insert into client (first_name, last_name, email_address, phone_number, user_name, password, age, wallet, current_location) "
 								+ "values (?, ?, ?, ?, ?, ?, ?,? ,?) returning id");
-
+				
 				psSecond = connection.prepareStatement(
-						"insert into client_role (user_name, role) " + "values ( ?, ?) returning client_role_id");
+						"insert into users (user_name, password)"
+						+ "values (?,?) returning id");
+
+				psThird = connection.prepareStatement(
+						"insert into user_role (user_name, role) " + "values ( ?, ?) returning user_role_id");
 
 			}
 
@@ -116,7 +121,9 @@ public class JDBCClientDAO implements ClientDAO {
 			ps.setDouble(8, model.getWallet());
 			ps.setString(9, model.getCurrentLocation());
 			psSecond.setString(1, model.getUserName());
-			psSecond.setString(2, "ROLE_CLIENT");
+			psSecond.setString(2, model.getPassword());	
+			psThird.setString(1, model.getUserName());
+			psThird.setString(2, "ROLE_CLIENT");
 
 			if (model.getId() > 0) {
 				ps.setLong(10, model.getId());
@@ -127,9 +134,12 @@ public class JDBCClientDAO implements ClientDAO {
 				model.setId(rs.getLong(1));
 			}
 			rs.close();
-
+			
 			ResultSet rsSecond = psSecond.executeQuery();
 			rsSecond.close();
+
+			ResultSet rsThird = psThird.executeQuery();
+			rsThird.close();
 
 			connection.commit();
 

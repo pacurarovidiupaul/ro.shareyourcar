@@ -89,6 +89,8 @@ public class JDBCOwnerDAO implements OwnerDAO {
 		try {
 			PreparedStatement ps = null;
 			PreparedStatement psSecond = null;
+			PreparedStatement psThird = null;
+
 			if (model.getId() > 0) {
 				ps = connection.prepareStatement(
 						"update owner set first_name=?, last_name=?, email_address=?, phone_number=?, user_name=?, password=?, profit=? "
@@ -100,8 +102,11 @@ public class JDBCOwnerDAO implements OwnerDAO {
 						"insert into owner (first_name, last_name, email_address, phone_number, user_name, password, profit) "
 								+ "values (?, ?, ?, ?, ?, ?, ?) returning id");
 
-				psSecond = connection.prepareStatement(
-						"insert into owner_role (user_name, role) " + "values ( ?, ?) returning owner_role_id");
+				psSecond = connection
+						.prepareStatement("insert into users (user_name, password)" + "values (?,?) returning id");
+
+				psThird = connection.prepareStatement(
+						"insert into user_role (user_name, role) " + "values ( ?, ?) returning user_role_id");
 
 			}
 
@@ -113,7 +118,9 @@ public class JDBCOwnerDAO implements OwnerDAO {
 			ps.setString(6, model.getPassword());
 			ps.setDouble(7, model.getProfit());
 			psSecond.setString(1, model.getUserName());
-			psSecond.setString(2, "ROLE_OWNER");
+			psSecond.setString(2, model.getPassword());
+			psThird.setString(1, model.getUserName());
+			psThird.setString(2, "ROLE_OWNER");
 
 			if (model.getId() > 0) {
 				ps.setLong(8, model.getId());
@@ -127,6 +134,9 @@ public class JDBCOwnerDAO implements OwnerDAO {
 
 			ResultSet rsSecond = psSecond.executeQuery();
 			rsSecond.close();
+
+			ResultSet rsThird = psThird.executeQuery();
+			rsThird.close();
 
 			connection.commit();
 
@@ -170,15 +180,20 @@ public class JDBCOwnerDAO implements OwnerDAO {
 			ps.setString(6, model.getPassword());
 			ps.setDouble(7, model.getProfit());
 
+
 			if (model.getId() > 0) {
 				ps.setLong(8, model.getId());
+				
 			}
 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				model.setId(rs.getLong(1));
 			}
+
+
 			rs.close();
+			
 
 			connection.commit();
 

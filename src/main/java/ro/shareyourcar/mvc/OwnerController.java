@@ -30,7 +30,7 @@ public class OwnerController {
 		modelAndView.addObject("owner", new Owner());
 		return modelAndView;
 	}
-
+    
 	@RequestMapping("edit")
 	public ModelAndView renderEdit(long id) {
 		ModelAndView modelAndView = new ModelAndView("owner/edit");
