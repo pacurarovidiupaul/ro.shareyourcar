@@ -7,5 +7,6 @@ import ro.shareyourcar.domain.Owner;
 public interface OwnerDAO extends BaseDAO<Owner> {
 
 	Collection<Owner> searchByUserName(String query);
+	
 
 }

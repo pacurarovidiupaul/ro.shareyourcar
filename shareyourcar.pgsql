@@ -53,6 +53,8 @@ CREATE TABLE car (
     end_position_long character varying,
     price double precision,
     booked boolean,
+    owner_user_name character varying(60),
+    client_user_name character varying(60),
     id integer NOT NULL
 );
 
@@ -270,7 +272,9 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Data for Name: car; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY car (license_plate, producer, model, type, year_of_production, nr_of_seats, fuel_tank_cap, consumption, start_position_lat, start_position_long, end_position_lat, end_position_long, price, booked, id) FROM stdin;
+COPY car (license_plate, producer, model, type, year_of_production, nr_of_seats, fuel_tank_cap, consumption, start_position_lat, start_position_long, end_position_lat, end_position_long, price, booked, owner_user_name, client_user_name, id) FROM stdin;
+CJ72RIG	Volvo	XC60	SUV	2013	5	70	8	46.502010	23.502010	\N	\N	140	f	Ovidiu		2
+CJ78RIG	BMW	525d	Limousine	2007	5	70	9	46.747470	23.501030	\N	\N	120	t	Ovidiu	Sergiu	1
 \.
 
 
@@ -278,7 +282,7 @@ COPY car (license_plate, producer, model, type, year_of_production, nr_of_seats,
 -- Name: car_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('car_id_seq', 1, true);
+SELECT pg_catalog.setval('car_id_seq', 2, true);
 
 
 --
@@ -286,9 +290,8 @@ SELECT pg_catalog.setval('car_id_seq', 1, true);
 --
 
 COPY client (first_name, last_name, email_address, phone_number, user_name, password, age, wallet, id, enabled, current_location) FROM stdin;
-Pacurar	Ovidiu	pacurarovidiupaul@live.com	0740013456	Ovidiu	maverick	35	200	1	1	\N
-Pacurar	Mihaela	pacurarmihaela@yahoo.com	0722128633	Mihaela	Tudor	0	0	2	1	Cluj-Napoca
-Pacurar ex Morar	Monica	pacurarmonica@yahoo.com	072344245	Monica	Tudor	0	0	3	1	Cluj-Napoca
+Pacurar	Sergiu	pacurarsergiu@yahoo.com	0744285504	Sergiu	vladimir	40	10000	1	1	Cluj-Napoca
+Pacurar	Andrei	pacurarandrei@yahoo.com	0724385672	Andrei	alex	17	1000	2	1	Cluj-Napoca
 \.
 
 
@@ -296,7 +299,7 @@ Pacurar ex Morar	Monica	pacurarmonica@yahoo.com	072344245	Monica	Tudor	0	0	3	1	C
 -- Name: client_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('client_id_seq', 3, true);
+SELECT pg_catalog.setval('client_id_seq', 2, true);
 
 
 --
@@ -304,7 +307,6 @@ SELECT pg_catalog.setval('client_id_seq', 3, true);
 --
 
 COPY owner (first_name, last_name, email_address, phone_number, user_name, password, profit, id, enabled) FROM stdin;
-Pacurar	Sergiu	pacurarovidiupaul@live.com	0744285504	Sergiu	vladimir	0	3	1
 Pacurar	Ovidiu	pacurarovidiupaul@live.com	0740013456	Ovidiu	maverick	0	1	1
 \.
 
@@ -313,7 +315,7 @@ Pacurar	Ovidiu	pacurarovidiupaul@live.com	0740013456	Ovidiu	maverick	0	1	1
 -- Name: owner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('owner_id_seq', 3, true);
+SELECT pg_catalog.setval('owner_id_seq', 1, true);
 
 
 --
@@ -322,9 +324,8 @@ SELECT pg_catalog.setval('owner_id_seq', 3, true);
 
 COPY user_role (user_role_id, user_name, role) FROM stdin;
 1	Ovidiu	ROLE_OWNER
-3	Sergiu	ROLE_OWNER
-4	Mihaela	ROLE_CLIENT
-5	Monica	ROLE_CLIENT
+2	Sergiu	ROLE_CLIENT
+3	Andrei	ROLE_CLIENT
 \.
 
 
@@ -332,7 +333,7 @@ COPY user_role (user_role_id, user_name, role) FROM stdin;
 -- Name: user_role_user_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('user_role_user_role_id_seq', 6, true);
+SELECT pg_catalog.setval('user_role_user_role_id_seq', 3, true);
 
 
 --
@@ -340,10 +341,9 @@ SELECT pg_catalog.setval('user_role_user_role_id_seq', 6, true);
 --
 
 COPY users (id, user_name, password, enabled) FROM stdin;
-3	Sergiu	vladimir	1
-4	Mihaela	Tudor	1
-5	Monica	Tudor	1
 1	Ovidiu	maverick	1
+2	Sergiu	vladimir	1
+3	Andrei	alex	1
 \.
 
 
@@ -351,7 +351,7 @@ COPY users (id, user_name, password, enabled) FROM stdin;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 5, true);
+SELECT pg_catalog.setval('users_id_seq', 3, true);
 
 
 --

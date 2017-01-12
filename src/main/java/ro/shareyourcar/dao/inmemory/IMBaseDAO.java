@@ -55,4 +55,10 @@ public class IMBaseDAO<T extends AbstractModel> implements BaseDAO<T> {
 		return model;
 	}
 
+	@Override
+	public T findByUserName(String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -259,6 +259,40 @@ public class JDBCClientDAO implements ClientDAO {
 
 		return result;
 	}
+	
+	@Override
+	public Client findByUserName(String query) {
+		Connection connection = newConnection();
+		List<Client> result = new LinkedList<>();
+     
+		try (ResultSet rs = connection.createStatement().executeQuery("select * from client " + "where lower(user_name) like '%" + query.toLowerCase() + "%'")) {
+        
+        
+			while (rs.next()) {
+				result.add(extractClient(rs));
+				
+			}
+			
+			
+			connection.commit();
+		} catch (SQLException ex) {
+
+			throw new RuntimeException("Error getting client by user_name", ex);
+		} finally {
+			try {
+				connection.close();
+			} catch (Exception ex) {
+
+			}
+		}
+
+		if (result.size() > 1) {
+			throw new IllegalStateException("Multiple Clients for user_name " + query);
+		}
+		return result.isEmpty() ? null : result.get(0);
+	}
+	
+	
 
 	protected Connection newConnection() {
 		try {
@@ -293,6 +327,8 @@ public class JDBCClientDAO implements ClientDAO {
 		return client;
 
 	}
+
+	
 
 
 }

@@ -57,18 +57,21 @@ public class JDBCOwnerDAO implements OwnerDAO {
 	@Override
 	public Owner findById(Long id) {
 		Connection connection = newConnection();
-
 		List<Owner> result = new LinkedList<>();
-
+     
 		try (ResultSet rs = connection.createStatement().executeQuery("select * from owner where id = " + id)) {
-
+        
+        
 			while (rs.next()) {
 				result.add(extractOwner(rs));
+				
 			}
+			
+			
 			connection.commit();
 		} catch (SQLException ex) {
 
-			throw new RuntimeException("Error getting owner.", ex);
+			throw new RuntimeException("Error getting owner by id", ex);
 		} finally {
 			try {
 				connection.close();
@@ -130,6 +133,7 @@ public class JDBCOwnerDAO implements OwnerDAO {
 			if (rs.next()) {
 				model.setId(rs.getLong(1));
 			}
+		
 			rs.close();
 
 			ResultSet rsSecond = psSecond.executeQuery();
@@ -137,6 +141,7 @@ public class JDBCOwnerDAO implements OwnerDAO {
 
 			ResultSet rsThird = psThird.executeQuery();
 			rsThird.close();
+			
 
 			connection.commit();
 
@@ -259,6 +264,41 @@ public class JDBCOwnerDAO implements OwnerDAO {
 
 		return result;
 	}
+	
+	@Override
+	public Owner findByUserName(String query) {
+		Connection connection = newConnection();
+		List<Owner> result = new LinkedList<>();
+     
+		try (ResultSet rs = connection.createStatement().executeQuery("select * from owner " + "where lower(user_name) like '%" + query.toLowerCase() + "%'")) {
+        
+        
+			while (rs.next()) {
+				result.add(extractOwner(rs));
+				
+			}
+			
+			
+			connection.commit();
+		} catch (SQLException ex) {
+
+			throw new RuntimeException("Error getting owner by user_name", ex);
+		} finally {
+			try {
+				connection.close();
+			} catch (Exception ex) {
+
+			}
+		}
+
+		if (result.size() > 1) {
+			throw new IllegalStateException("Multiple Owners for user_name " + query);
+		}
+		return result.isEmpty() ? null : result.get(0);
+	}
+	
+	
+	
 
 	protected Connection newConnection() {
 		try {
@@ -291,5 +331,7 @@ public class JDBCOwnerDAO implements OwnerDAO {
 		return owner;
 
 	}
+
+	
 
 }

@@ -7,6 +7,21 @@ import ro.shareyourcar.domain.Car;
 
 public interface CarDAO extends BaseDAO<Car>{
 	
-	Collection<Car> searchByName(String query);
+	Collection<Car> searchByUserName(String query);
+	
+	Collection<Car> getAvailableCars();
+	
+	Collection<Car> getBookedCars();
+	
+	boolean book(Car model);
+	
+	boolean unBook(Car model);
+
+	
+
+	
+
+
+	
 
 }

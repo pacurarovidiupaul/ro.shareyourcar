@@ -32,9 +32,11 @@ public class ClientController {
 	}
 
 	@RequestMapping("edit")
-	public ModelAndView renderEdit(long id) {
+	public ModelAndView renderEdit() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
 		ModelAndView modelAndView = new ModelAndView("client/edit");
-		modelAndView.addObject("client", clientService.get(id));
+		modelAndView.addObject("client", clientService.getByUserName(currentPrincipalName));
 		return modelAndView;
 	}
 
@@ -88,7 +90,7 @@ public class ClientController {
 		}
 
 		if (hasErros) {
-			modelAndView = new ModelAndView("client/add");
+			modelAndView = new ModelAndView("client/edit");
 			modelAndView.addObject("client", client);
 			modelAndView.addObject("errors", bindingResult.getAllErrors());
 		}

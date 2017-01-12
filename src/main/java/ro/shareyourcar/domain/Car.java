@@ -23,9 +23,16 @@ public class Car extends AbstractModel {
 	private String endPositionLong;
 	private double price;
 	private boolean booked;
+	private long ownerId;
 	
 	
 	
+	public long getOwnerId() {
+		return ownerId;
+	}
+	public void setOwnerId(long ownerId) {
+		this.ownerId = ownerId;
+	}
 	public String getProducer() {
 		return producer;
 	}
@@ -140,7 +147,6 @@ public class Car extends AbstractModel {
 		result = prime * result + ((startPositionLat == null) ? 0 : startPositionLat.hashCode());
 		result = prime * result + ((startPositionLong == null) ? 0 : startPositionLong.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + yearOfProduction;
 		return result;
 	}
 	

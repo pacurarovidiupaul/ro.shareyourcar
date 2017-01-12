@@ -2,7 +2,10 @@ package ro.shareyourcar.mvc;
 
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -21,6 +24,7 @@ public class CarController {
 
 	@Autowired
 	private CarService carService;
+	
 
 	@RequestMapping("add")
 	public ModelAndView renderAdd() {
@@ -31,7 +35,7 @@ public class CarController {
 
 	@RequestMapping("edit")
 	public ModelAndView renderEdit(long id) {
-		ModelAndView modelAndView = new ModelAndView("car/add");
+		ModelAndView modelAndView = new ModelAndView("car/edit");
 		modelAndView.addObject("car", carService.get(id));
 		return modelAndView;
 	}
@@ -45,7 +49,7 @@ public class CarController {
 				carService.save(car);
 
 				modelAndView = new ModelAndView();
-				modelAndView.setView(new RedirectView("show"));
+				modelAndView.setView(new RedirectView("/owner"));
 			} catch (ValidationException ex) {
 				for (String msg : ex.getCauses()) {
 					bindingResult.addError(new ObjectError("car", msg));
@@ -57,7 +61,36 @@ public class CarController {
 		}
 
 		if (hasErros) {
-			modelAndView = new ModelAndView("car/add");
+			modelAndView = new ModelAndView("car/edit");
+			modelAndView.addObject("car", car);
+			modelAndView.addObject("errors", bindingResult.getAllErrors());
+		}
+
+		return modelAndView;
+	}
+	
+	@RequestMapping("update")
+	public ModelAndView update(@Valid @ModelAttribute("car") Car car, BindingResult bindingResult) {
+		ModelAndView modelAndView = null;
+		boolean hasErros = false;
+		if (!bindingResult.hasErrors()) {
+			try {
+				carService.updateEdit(car);
+
+				modelAndView = new ModelAndView();
+				modelAndView.setView(new RedirectView("/owner"));
+			} catch (ValidationException ex) {
+				for (String msg : ex.getCauses()) {
+					bindingResult.addError(new ObjectError("car", msg));
+				}
+				hasErros = true;
+			}
+		} else {
+			hasErros = true;
+		}
+
+		if (hasErros) {
+			modelAndView = new ModelAndView("car/edit");
 			modelAndView.addObject("car", car);
 			modelAndView.addObject("errors", bindingResult.getAllErrors());
 		}
@@ -72,11 +105,65 @@ public class CarController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("available")
+	public ModelAndView listAvailable() throws Exception {
+		ModelAndView modelAndView = new ModelAndView("car/listclient");
+		modelAndView.addObject("cars", carService.listAvailable());
+		return modelAndView;
+	}
+	
+	@RequestMapping("booked")
+	public ModelAndView listBooked() throws Exception {
+		ModelAndView modelAndView = new ModelAndView("car/listbooked");
+		modelAndView.addObject("cars", carService.listBooked());
+		return modelAndView;
+	}
+	
+	@RequestMapping("list")
+	public ModelAndView listByUserName(String query) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		ModelAndView modelAndView = new ModelAndView("car/listowner");
+		modelAndView.addObject("cars", carService.search(currentPrincipalName));
+		return modelAndView;
+	}
+	
 	@RequestMapping("delete")
 	public ModelAndView delete(long id) throws Exception {
 		ModelAndView modelAndView = new ModelAndView("car/list");
-		modelAndView.addObject("cars", carService.get(id));
+		modelAndView.addObject("cars", carService.delete(id));		
+		modelAndView.setView(new RedirectView("list"));
 		return modelAndView;
+	}
+	
+	@RequestMapping("book")
+	public ModelAndView book(long id) throws Exception {
+		ModelAndView modelAndView = new ModelAndView("car/list");
+		modelAndView.addObject("cars", carService.book(id));
+		modelAndView.setView(new RedirectView("available"));
+		return modelAndView;
+	}
+	
+	@RequestMapping("unbook")
+	public ModelAndView ride(long id) throws Exception {
+		System.out.println("booking car");
+		ModelAndView modelAndView = new ModelAndView("car/list");
+		modelAndView.addObject("cars", carService.unBook(id));
+		modelAndView.setView(new RedirectView("/client"));
+		return modelAndView;
+	}
+	
+
+	
+	@RequestMapping("showpos")
+	public ModelAndView shoPos(long id) throws Exception {
+		System.out.println("showing postion of car" +carService.get(id).getStartPositionLat()
+				+" "+carService.get(id).getStartPositionLong());
+		ModelAndView modelAndView = new ModelAndView("car/position");
+		System.out.println();
+		return modelAndView;   // "redirect:/car/pos.html?param1="+carService.get(id).getStartPositionLat()		+"&param2="+carService.get(id).getStartPositionLong();
+		
+		
 	}
 
 }
