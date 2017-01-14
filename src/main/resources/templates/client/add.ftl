@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="[@spring.url '/js/bootstrap.min.js' /] "></script>
-	
+
 </head>
 [#escape x as x?html]
 
@@ -60,7 +60,7 @@
 			<div class="input-group" style="width:80%">
 		  		<input type="password" name="password" type="input" value="${client.password!''}" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
 			</div>
-			
+		
 			<div class="input-group" style="width:80%">
 		  		<input type="integer" name="age" type="input" value="${client.age!''}" class="form-control" placeholder="Age" aria-describedby="basic-addon1">
 			</div>
@@ -70,7 +70,11 @@
 			</div>
 			
 			<div class="input-group" style="width:80%">
-		  		<input type="text" name="currentLocation" type="input" value="${client.currentLocation!''}" class="form-control" placeholder="Current location" aria-describedby="basic-addon1">
+		  		<input type="text" name="currentLocation" type="input" value="${client.currentLocation!''}" class="form-control" placeholder="Current location latitude" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group" style="width:80%">
+		  		<input type="text" name="currentLocationLong" type="input" value="${client.currentLocationLong!''}" class="form-control" placeholder="Current location longitude" aria-describedby="basic-addon1">
 			</div>
 			
 			

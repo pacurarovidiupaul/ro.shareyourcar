@@ -4,12 +4,13 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Client List</title>
+    <title>Edit car!</title>
     <link  href="[@spring.url '/css/bootstrap.min.css' /]" rel="stylesheet">
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="[@spring.url '/js/bootstrap.min.js' /] "></script>
+	
 </head>
 [#escape x as x?html]
 
@@ -18,7 +19,7 @@
 
 <div class="panel panel-default" style="width:50%; margin:0 auto;">
   <div class="panel-heading">
-    <h3 class="panel-title">Edit Client</h3>
+    <h3 class="panel-title">Edit car</h3>
   </div>
   <div class="panel-body">
   
@@ -66,18 +67,27 @@
 		  		<input type="double" name="fuelTankCap" type="input" value="${car.fuelTankCap!''}" class="form-control" placeholder="Fuel Tank" aria-describedby="basic-addon1">
 			</div>
 			
-			div class="input-group" style="width:80%">
+			<div class="input-group" style="width:80%">
 		  		<input type="double" name="consumption" type="input" value="${car.consumption!''}" class="form-control" placeholder="Consumption" aria-describedby="basic-addon1">
 			</div>
 			
-			div class="input-group" style="width:80%">
-		  		<input type="double" name="price" type="input" value="${car.price!''}" class="form-control" placeholder="Price" aria-describedby="basic-addon1">
+			<div class="input-group" style="width:80%">
+		  		<input type="text" name="startPositionLat" type="input" value="${car.startPositionLat!''}" class="form-control" placeholder="Start Position Latitude" aria-describedby="basic-addon1">
+			</div>
+			
+			
+			<div class="input-group" style="width:80%">
+		  		<input type="text" name="startPositionLong" type="input" value="${car.startPositionLong!''}" class="form-control" placeholder="Start Position Longitude" aria-describedby="basic-addon1">
 			</div>
 					
+					
+			<div class="input-group" style="width:80%">
+		  		<input type="double" name="price" type="input" value="${car.price!''}" class="form-control" placeholder="Price" aria-describedby="basic-addon1">
+			</div>
 			
-			<input type="hidden" name="id" value="[#if client.id??]${client.id?c}[/#if]">
+			<input type="hidden" name="id" value="[#if car.id??]${car.id?c}[/#if]">
 			<input type="submit" value="Update">
-			<a href="/car">Cancel</a>
+			<a href="/car/list">Cancel</a>
 		</form>
   </div>
 </div>

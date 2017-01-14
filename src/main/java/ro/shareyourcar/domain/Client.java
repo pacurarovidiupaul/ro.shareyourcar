@@ -11,6 +11,7 @@ public class Client extends AbstractModel {
 	private int age;
 	private double wallet;
 	private String currentLocation;
+	private String currentLocationLong;
 
 	public String getFirstName() {
 		return firstName;
@@ -84,11 +85,20 @@ public class Client extends AbstractModel {
 		this.currentLocation = currentLocation;
 	}
 
+	public String getCurrentLocationLong() {
+		return currentLocationLong;
+	}
+
+	public void setCurrentLocationLong(String currentLocationLong) {
+		this.currentLocationLong = currentLocationLong;
+	}
+
 	@Override
 	public String toString() {
 		return "Client [firstName=" + firstName + ", lastName=" + lastName + ", emailAddress=" + emailAddress
 				+ ", phoneNumber=" + phoneNumber + ", userName=" + userName + ", password=" + password + ", age=" + age
-				+ ", wallet=" + wallet + ", currentLocation=" + currentLocation + "]";
+				+ ", wallet=" + wallet + ", currentLocation=" + currentLocation + ", currentLocationLong="
+				+ currentLocationLong + "]";
 	}
 
 }

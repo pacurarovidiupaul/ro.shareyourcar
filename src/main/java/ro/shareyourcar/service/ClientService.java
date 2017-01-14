@@ -37,6 +37,11 @@ public class ClientService {
 
 	}
 
+	public Client getByUserName(String query) {
+		return dao.findByUserName(query);
+
+	}
+
 	public void save(Client client) throws ValidationException {
 		dao.update(client);
 	}

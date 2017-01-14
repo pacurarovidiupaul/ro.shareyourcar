@@ -5,8 +5,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Car extends AbstractModel {
-	
-	
+
 	@NotEmpty
 	@Size(min = 2, max = 60)
 	private String licensePlate;
@@ -23,54 +22,68 @@ public class Car extends AbstractModel {
 	private String endPositionLong;
 	private double price;
 	private boolean booked;
-	
-	
-	
+	private String ownerUserName;
+
 	public String getProducer() {
 		return producer;
 	}
+
 	public void setProducer(String producer) {
 		this.producer = producer;
 	}
+
 	public String getModel() {
 		return model;
 	}
+
 	public void setModel(String model) {
 		this.model = model;
 	}
+
 	public String getLicensePlate() {
 		return licensePlate;
 	}
+
 	public void setLicensePlate(String licensePlate) {
 		this.licensePlate = licensePlate;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	public int getYearOfProduction() {
 		return yearOfProduction;
 	}
+
 	public void setYearOfProduction(int yearOfProduction) {
 		this.yearOfProduction = yearOfProduction;
 	}
+
 	public int getNrOfSeats() {
 		return nrOfSeats;
 	}
+
 	public void setNrOfSeats(int nrOfSeats) {
 		this.nrOfSeats = nrOfSeats;
 	}
+
 	public double getFuelTankCap() {
 		return fuelTankCap;
 	}
+
 	public void setFuelTankCap(int fuelTankCap) {
 		this.fuelTankCap = fuelTankCap;
 	}
+
 	public double getConsumption() {
 		return consumption;
 	}
+
 	public void setConsumption(int consumption) {
 		this.consumption = consumption;
 	}
@@ -78,39 +91,59 @@ public class Car extends AbstractModel {
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
 	public boolean isBooked() {
 		return booked;
 	}
+
 	public void setBooked(boolean booked) {
 		this.booked = booked;
 	}
+
 	public String getStartPositionLong() {
 		return startPositionLong;
 	}
+
 	public void setStartPositionLong(String startPositionLong) {
 		this.startPositionLong = startPositionLong;
 	}
+
 	public String getStartPositionLat() {
 		return startPositionLat;
 	}
+
 	public void setStartPositionLat(String startPositionLat) {
 		this.startPositionLat = startPositionLat;
 	}
+
 	public String getEndPositionLong() {
 		return endPositionLong;
 	}
+
 	public void setEndPositionLong(String endPositionLong) {
 		this.endPositionLong = endPositionLong;
 	}
+
 	public String getEndPositionLat() {
 		return endPositionLat;
 	}
+
 	public void setEndPositionLat(String endPositionLat) {
 		this.endPositionLat = endPositionLat;
 	}
+
+	public String getOwnerUserName() {
+		return ownerUserName;
+	}
+
+	public void setOwnerUserName(String ownerUserName) {
+		this.ownerUserName = ownerUserName;
+	}
+
 	@Override
 	public String toString() {
 		return "Car [licensePlate=" + licensePlate + ", producer=" + producer + ", model=" + model + ", type=" + type
@@ -119,6 +152,7 @@ public class Car extends AbstractModel {
 				+ startPositionLong + ", endPositionLat=" + endPositionLat + ", endPositionLong=" + endPositionLong
 				+ ", price=" + price + ", booked=" + booked + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -140,13 +174,7 @@ public class Car extends AbstractModel {
 		result = prime * result + ((startPositionLat == null) ? 0 : startPositionLat.hashCode());
 		result = prime * result + ((startPositionLong == null) ? 0 : startPositionLong.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + yearOfProduction;
 		return result;
 	}
-	
-	
-	
-	
 
 }
-	

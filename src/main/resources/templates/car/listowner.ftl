@@ -49,7 +49,7 @@
 				<td>${car.nrOfSeats}</td>
 				<td>${car.fuelTankCap}</td>
 				<td>${car.consumption}</td>
-				<td><a href="/car/showpos?id=${car.id?c}&param1=${car.startPositionLat}&param2=${car.startPositionLong}">
+				<td><a href="/owner/showpos?id=${car.id?c}&param1=${car.startPositionLat}&param2=${car.startPositionLong}">
 				<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
 				</a></td>
 				<td>${car.price}</td>

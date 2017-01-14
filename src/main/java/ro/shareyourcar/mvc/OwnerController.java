@@ -30,12 +30,15 @@ public class OwnerController {
 		modelAndView.addObject("owner", new Owner());
 		return modelAndView;
 	}
-    
+
 	@RequestMapping("edit")
-	public ModelAndView renderEdit(long id) {
+	public ModelAndView renderEdit() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
 		ModelAndView modelAndView = new ModelAndView("owner/edit");
-		modelAndView.addObject("owner", ownerService.get(id));
+		modelAndView.addObject("owner", ownerService.getByUserName(currentPrincipalName));
 		return modelAndView;
+
 	}
 
 	@RequestMapping("save")
@@ -95,6 +98,13 @@ public class OwnerController {
 
 		return modelAndView;
 	}
+	
+	@RequestMapping("showpos")
+	public ModelAndView shoPos(long id) throws Exception {
+		ModelAndView modelAndView = new ModelAndView("car/positionOwner");
+		return modelAndView;
+
+	}
 
 	@RequestMapping("")
 	public ModelAndView list() throws Exception {
@@ -103,7 +113,7 @@ public class OwnerController {
 		ModelAndView modelAndView = new ModelAndView("owner/list");
 		modelAndView.addObject("owners", ownerService.search(currentPrincipalName));
 		return modelAndView;
-	}
 
+	}
 
 }

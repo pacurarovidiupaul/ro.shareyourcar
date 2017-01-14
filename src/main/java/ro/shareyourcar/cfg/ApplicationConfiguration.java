@@ -28,6 +28,7 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 		registry.addViewController("/login").setViewName("login");
 		registry.addViewController("/403").setViewName("403");
 		registry.addViewController("/done").setViewName("done");
+		
 
 	}
 

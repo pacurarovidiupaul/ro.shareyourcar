@@ -37,6 +37,11 @@ public class OwnerService {
 
 	}
 
+	public Owner getByUserName(String query) {
+		return dao.findByUserName(query);
+
+	}
+
 	public void save(Owner owner) throws ValidationException {
 		dao.update(owner);
 	}

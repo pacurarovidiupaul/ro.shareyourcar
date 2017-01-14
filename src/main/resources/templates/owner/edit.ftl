@@ -60,12 +60,6 @@
 		  		<input type="password" name="password" type="input" value="${owner.password!''}" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
 			</div>
 			
-			<div class="input-group" style="width:80%">
-		  		<input type="double" name="profit" type="input" value="${owner.profit!''}" class="form-control" placeholder="Profit" aria-describedby="basic-addon1">
-			</div>
-			
-			
-			
 			<input type="hidden" name="id" value="[#if owner.id??]${owner.id?c}[/#if]">
 			<input type="submit" value="Update">
 			<a href="/owner">Cancel</a>

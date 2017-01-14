@@ -69,7 +69,11 @@
 			</div>
 			
 			<div class="input-group" style="width:80%">
-		  		<input type="text" name="currentLocation" type="input" value="${client.currentLocation!''}" class="form-control" placeholder="Current location" aria-describedby="basic-addon1">
+		  		<input type="text" name="currentLocation" type="input" value="${client.currentLocation!''}" class="form-control" placeholder="Current location latitude" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group" style="width:80%">
+		  		<input type="text" name="currentLocationLong" type="input" value="${client.currentLocationLong!''}" class="form-control" placeholder="Current location longitude" aria-describedby="basic-addon1">
 			</div>
 					
 			

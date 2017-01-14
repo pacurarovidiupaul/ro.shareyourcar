@@ -93,14 +93,14 @@ public class JDBCClientDAO implements ClientDAO {
 			PreparedStatement psThird = null;
 			if (model.getId() > 0) {
 				ps = connection.prepareStatement(
-						"update client set first_name=?, last_name=?, email_address=?, phone_number=?, user_name=?, password=?, age=?, wallet=?, current_location=? "
+						"update client set first_name=?, last_name=?, email_address=?, phone_number=?, user_name=?, password=?, age=?, wallet=?, current_location=? , current_location_long=? "
 								+ "where id = ? returning id");
 
 			} else {
 
 				ps = connection.prepareStatement(
-						"insert into client (first_name, last_name, email_address, phone_number, user_name, password, age, wallet, current_location) "
-								+ "values (?, ?, ?, ?, ?, ?, ?,? ,?) returning id");
+						"insert into client (first_name, last_name, email_address, phone_number, user_name, password, age, wallet, current_location, current_location_long) "
+								+ "values (?, ?, ?, ?, ?, ?, ?,? ,?,?) returning id");
 				
 				psSecond = connection.prepareStatement(
 						"insert into users (user_name, password)"
@@ -120,6 +120,7 @@ public class JDBCClientDAO implements ClientDAO {
 			ps.setInt(7, model.getAge());
 			ps.setDouble(8, model.getWallet());
 			ps.setString(9, model.getCurrentLocation());
+			ps.setString(10, model.getCurrentLocationLong());
 			psSecond.setString(1, model.getUserName());
 			psSecond.setString(2, model.getPassword());	
 			psThird.setString(1, model.getUserName());
@@ -164,14 +165,14 @@ public class JDBCClientDAO implements ClientDAO {
 			PreparedStatement ps = null;
 			if (model.getId() > 0) {
 				ps = connection.prepareStatement(
-						"update client set first_name=?, last_name=?, email_address=?, phone_number=?, user_name=?, password=?, age=?, wallet=?, current_location=? "
+						"update client set first_name=?, last_name=?, email_address=?, phone_number=?, user_name=?, password=?, age=?, wallet=?, current_location=?, current_location_long=? "
 								+ "where id = ? returning id");
 
 			} else {
 
 				ps = connection.prepareStatement(
-						"insert into client (first_name, last_name, email_address, phone_number, user_name, password, age, wallet, current_location) "
-								+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?) returning id");
+						"insert into client (first_name, last_name, email_address, phone_number, user_name, password, age, wallet, current_location, current_location_long) "
+								+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) returning id");
 
 			}
 
@@ -184,9 +185,11 @@ public class JDBCClientDAO implements ClientDAO {
 			ps.setInt(7, model.getAge());
 			ps.setDouble(8, model.getWallet());
 			ps.setString(9, model.getCurrentLocation());
+			ps.setString(10, model.getCurrentLocationLong());
+
 
 			if (model.getId() > 0) {
-				ps.setLong(10, model.getId());
+				ps.setLong(11, model.getId());
 			}
 
 			ResultSet rs = ps.executeQuery();
@@ -259,6 +262,40 @@ public class JDBCClientDAO implements ClientDAO {
 
 		return result;
 	}
+	
+	@Override
+	public Client findByUserName(String query) {
+		Connection connection = newConnection();
+		List<Client> result = new LinkedList<>();
+     
+		try (ResultSet rs = connection.createStatement().executeQuery("select * from client " + "where lower(user_name) like '%" + query.toLowerCase() + "%'")) {
+        
+        
+			while (rs.next()) {
+				result.add(extractClient(rs));
+				
+			}
+			
+			
+			connection.commit();
+		} catch (SQLException ex) {
+
+			throw new RuntimeException("Error getting client by user_name", ex);
+		} finally {
+			try {
+				connection.close();
+			} catch (Exception ex) {
+
+			}
+		}
+
+		if (result.size() > 1) {
+			throw new IllegalStateException("Multiple Clients for user_name " + query);
+		}
+		return result.isEmpty() ? null : result.get(0);
+	}
+	
+	
 
 	protected Connection newConnection() {
 		try {
@@ -289,10 +326,14 @@ public class JDBCClientDAO implements ClientDAO {
 		client.setAge(rs.getInt("age"));
 		client.setWallet(rs.getDouble("wallet"));
 		client.setCurrentLocation(rs.getString("current_location"));
+		client.setCurrentLocationLong(rs.getString("current_location_long"));
+
 
 		return client;
 
 	}
+
+	
 
 
 }

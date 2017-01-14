@@ -9,7 +9,6 @@ import org.springframework.util.StringUtils;
 import ro.shareyourcar.dao.OwnerDAO;
 import ro.shareyourcar.domain.Owner;
 
-//@Component
 public class IMOwnerDAO extends IMBaseDAO<Owner> implements OwnerDAO {
 
 	@Override

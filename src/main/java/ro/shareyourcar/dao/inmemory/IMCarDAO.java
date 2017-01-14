@@ -25,4 +25,35 @@ public class IMCarDAO extends IMBaseDAO<Car> implements CarDAO {
 		}
 		return all;
 	}
+
+	@Override
+	public boolean book(int days, Car model) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Collection<Car> getAvailableCars() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean unBook(Car model) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Collection<Car> searchByUserName(String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Car> getBookedCars() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

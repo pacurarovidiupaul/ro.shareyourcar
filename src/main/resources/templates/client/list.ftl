@@ -22,6 +22,7 @@
 	<tr>
 	    <th>Name</td>
 		<th>Your Wallet</th>
+		<th>List available cars</th>
 		<th>Edit your profile</th>
 		<th></th>
 		
@@ -32,23 +33,28 @@
 			<tr>
 			    <td>${client.lastName}</td>
 				<td>${client.wallet}</td>
-				<td><a href="/client/edit?id=${client.id?c}">
+				<td><a href="/car/available">
+				<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+				</a></td>
+				<td><a href="/client/edit">
 				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 				</a></td>
+		
 			</tr>
 		[/#list]
 	[/#if]
 	
-	<!-- end iteration -->
-		
+	<!-- end iteration -->		
 
 </table>
 </div>
+
+<form action="/car/booked" method="post"> 
+			<input type="submit" class="button red big" value="View your Booked Cars!"  /> 		
+		</form>	
+
 <form action="/logout" method="post"> 
-			<input type="submit" class="button red big" value="Sign OUT"  /> 
-			
-			
-			
+			<input type="submit" class="button red big" value="Sign OUT"  /> 		
 		</form>	
 
 	

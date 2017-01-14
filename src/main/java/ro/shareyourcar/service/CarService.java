@@ -2,7 +2,6 @@ package ro.shareyourcar.service;
 
 import java.util.Collection;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +18,16 @@ public class CarService {
 		return dao.getAll();
 	}
 
+	public Collection<Car> listAvailable() {
+		return dao.getAvailableCars();
+	}
+
+	public Collection<Car> listBooked() {
+		return dao.getBookedCars();
+	}
+
 	public Collection<Car> search(String query) {
-		return dao.searchByName(query);
+		return dao.searchByUserName(query);
 	}
 
 	public boolean delete(Long id) {
@@ -30,6 +37,24 @@ public class CarService {
 			return true;
 		}
 
+		return false;
+	}
+
+	public boolean book(int days, Long id) {
+		Car car = dao.findById(id);
+		if (car != null) {
+			dao.book(days, car);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean unBook(Long id) {
+		Car car = dao.findById(id);
+		if (car != null) {
+			dao.unBook(car);
+			return true;
+		}
 		return false;
 	}
 

@@ -15,12 +15,14 @@
 [#escape x as x?html]
 
 
-
-
 <div class="panel panel-default" style="width:50%; margin:0 auto;">
   <div class="panel-heading">
     <h3 class="panel-title">Add car</h3>
   </div>
+  
+  
+	
+	
   <div class="panel-body">
   
     [#if errors??]
@@ -35,6 +37,7 @@
         </ul>
     </div>
 	[/#if]
+	
 
     <form action="/car/save" method="POST">
 			<div class="input-group" style="width:80%">
@@ -54,7 +57,7 @@
 			</div>
 			
 			<div class="input-group" style="width:80%">
-		  		<input type="integer" name="yearOfProduction" type="input" value="${car.yearOfProduction!''}" class="form-control" placeholder="Year" aria-describedby="basic-addon1">
+		  		<input type="integer" name="yearOfProduction" type="input" value="${car.yearOfProduction!''}" class="form-control" placeholder="Year of production" aria-describedby="basic-addon1">
 			</div>
 			
 			
@@ -72,34 +75,21 @@
 			</div>
 			
 			<div class="input-group" style="width:80%">
-		  		<input type="text" name="startPositionLat" type="input" value="${car.startPositionLat!''}" class="form-control" placeholder="startPositionLat" aria-describedby="basic-addon1">
+		  		<input type="text" name="startPositionLat" type="input" value="${car.startPositionLat!''}" class="form-control" placeholder="Start Position Latitude" aria-describedby="basic-addon1">
 			</div>
 			
 			
 			<div class="input-group" style="width:80%">
-		  		<input type="text" name="startPositionLong" type="input" value="${car.startPositionLong!''}" class="form-control" placeholder="startPositionLat" aria-describedby="basic-addon1">
+		  		<input type="text" name="startPositionLong" type="input" value="${car.startPositionLong!''}" class="form-control" placeholder="Start Position Longitude" aria-describedby="basic-addon1">
 			</div>
-			
-			<div class="input-group" style="width:80%">
-		  		<input type="text" name="endPositionLat" type="input" value="${car.endPositionLat!''}" class="form-control" placeholder="startPositionLat" aria-describedby="basic-addon1">
-			</div>
-			
-			<div class="input-group" style="width:80%">
-		  		<input type="text" name="endPositionLong" type="input" value="${car.endPositionLong!''}" class="form-control" placeholder="startPositionLat" aria-describedby="basic-addon1">
-			</div>
-			
-			
+									
 			<div class="input-group" style="width:80%">
 		  		<input type="double" name="price" type="input" value="${car.price!''}" class="form-control" placeholder="Price" aria-describedby="basic-addon1">
 			</div>
 			
-			
-			
-			
-			
 			<input type="hidden" name="id" value="[#if car.id??]${car.id?c}[/#if]">
 			<input type="submit" value="Save">
-			<a href="/home">Cancel</a>
+			<a href="/owner">Cancel</a>
 		</form>
   </div>
 </div>
