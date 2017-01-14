@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+<<<<<<< HEAD
 		http.authorizeRequests().antMatchers("/owner/add").permitAll().antMatchers("/client/add").permitAll()
 
 				.antMatchers("/owner").access("hasRole('ROLE_OWNER')").antMatchers("/owner/")
@@ -90,6 +91,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.access("hasRole('ROLE_CLIENT')")
 
 				.anyRequest().permitAll().and().formLogin().loginPage("/login").usernameParameter("username")
+=======
+		http.authorizeRequests()
+		        .antMatchers("/owner/add").permitAll().antMatchers("/client/add").permitAll()
+				.antMatchers("/owner").access("hasRole('ROLE_OWNER')").antMatchers("/owner/").access("hasRole('ROLE_OWNER')")
+				.antMatchers("/owner/edit").access("hasRole('ROLE_OWNER')").antMatchers("/owner/edit/").access("hasRole('ROLE_OWNER')")
+				.antMatchers("/owner/update").access("hasRole('ROLE_OWNER')").antMatchers("/owner/update/").access("hasRole('ROLE_OWNER')")
+				.antMatchers("/car/show").access("hasRole('ROLE_ADMIN')").antMatchers("/car/show/").access("hasRole('ROLE_ADMIN')")
+				.antMatchers("/car/save").access("hasRole('ROLE_OWNER')").antMatchers("/car/save/").access("hasRole('ROLE_OWNER')")
+				.antMatchers("/car/add").access("hasRole('ROLE_OWNER')").antMatchers("/car/add/").access("hasRole('ROLE_OWNER')")
+				.antMatchers("/car/list").access("hasRole('ROLE_OWNER')").antMatchers("/car/list/").access("hasRole('ROLE_OWNER')")
+				.antMatchers("/car/edit").access("hasRole('ROLE_OWNER')").antMatchers("/car/edit/").access("hasRole('ROLE_OWNER')")
+				.antMatchers("/car/update").access("hasRole('ROLE_OWNER')").antMatchers("/car/update/").access("hasRole('ROLE_OWNER')")
+				.antMatchers("/car/delete").access("hasRole('ROLE_OWNER')").antMatchers("/car/delete/").access("hasRole('ROLE_OWNER')")
+				.antMatchers("/client").access("hasRole('ROLE_CLIENT')").antMatchers("/client/").access("hasRole('ROLE_CLIENT')")
+				.antMatchers("/client/edit").access("hasRole('ROLE_CLIENT')").antMatchers("/client/edit/").access("hasRole('ROLE_CLIENT')")
+				.antMatchers("/client/update").access("hasRole('ROLE_CLIENT')").antMatchers("/client/updat/").access("hasRole('ROLE_CLIENT')")
+				.antMatchers("/car/available").access("hasRole('ROLE_CLIENT')").antMatchers("/car/available/").access("hasRole('ROLE_CLIENT')")
+				.antMatchers("/car/booked").access("hasRole('ROLE_CLIENT')").antMatchers("/car/booked/").access("hasRole('ROLE_CLIENT')")
+				.antMatchers("/car/unbook").access("hasRole('ROLE_CLIENT')").antMatchers("/car/unbook/").access("hasRole('ROLE_CLIENT')")
+				.antMatchers("/car/book").access("hasRole('ROLE_CLIENT')").antMatchers("/car/book/").access("hasRole('ROLE_CLIENT')")
+				.anyRequest()
+				.permitAll().and().formLogin().loginPage("/login").usernameParameter("username")
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 				.passwordParameter("password").and().logout().logoutSuccessUrl("/login?logout").and()
 				.exceptionHandling().accessDeniedPage("/403").and().csrf().disable();
 

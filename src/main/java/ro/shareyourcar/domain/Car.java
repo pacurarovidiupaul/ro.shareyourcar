@@ -22,8 +22,21 @@ public class Car extends AbstractModel {
 	private String endPositionLong;
 	private double price;
 	private boolean booked;
+<<<<<<< HEAD
 	private String ownerUserName;
 
+=======
+	private long ownerId;
+	
+	
+	
+	public long getOwnerId() {
+		return ownerId;
+	}
+	public void setOwnerId(long ownerId) {
+		this.ownerId = ownerId;
+	}
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 	public String getProducer() {
 		return producer;
 	}

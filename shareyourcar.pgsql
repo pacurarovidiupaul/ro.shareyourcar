@@ -275,9 +275,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 --
 
 COPY car (license_plate, producer, model, type, year_of_production, nr_of_seats, fuel_tank_cap, consumption, start_position_lat, start_position_long, end_position_lat, end_position_long, price, booked, owner_user_name, client_user_name, id) FROM stdin;
+<<<<<<< HEAD
 CJ76RIG	BMW	320i	Limousine	1999	5	60	10	46.75532341	23.55794203			90	f	Gelu		4
 CJ99TOM	MERCEDES	S600	Limousine	2016	5	80	14	46.75532341	23.55794203			250	f	Ovidiu		5
 CJ74RIG	VOLVO	XC60	SUV	2013	5	70	8	46.75532341	23.55794203			140	f	Miha		3
+=======
+CJ72RIG	Volvo	XC60	SUV	2013	5	70	8	46.502010	23.502010	\N	\N	140	f	Ovidiu		2
+CJ78RIG	BMW	525d	Limousine	2007	5	70	9	46.747470	23.501030	\N	\N	120	t	Ovidiu	Sergiu	1
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 \.
 
 
@@ -285,15 +290,25 @@ CJ74RIG	VOLVO	XC60	SUV	2013	5	70	8	46.75532341	23.55794203			140	f	Miha		3
 -- Name: car_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
+<<<<<<< HEAD
 SELECT pg_catalog.setval('car_id_seq', 5, true);
+=======
+SELECT pg_catalog.setval('car_id_seq', 2, true);
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 
 --
 -- Data for Name: client; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+<<<<<<< HEAD
 COPY client (first_name, last_name, email_address, phone_number, user_name, password, age, wallet, id, enabled, current_location, current_location_long) FROM stdin;
 Pacurar	Sergiu	pacurarsergiu@yahoo.com	0744285504	Sergiu	vladimir	40	1630	1	1	46.45364	23.45336
+=======
+COPY client (first_name, last_name, email_address, phone_number, user_name, password, age, wallet, id, enabled, current_location) FROM stdin;
+Pacurar	Sergiu	pacurarsergiu@yahoo.com	0744285504	Sergiu	vladimir	40	10000	1	1	Cluj-Napoca
+Pacurar	Andrei	pacurarandrei@yahoo.com	0724385672	Andrei	alex	17	1000	2	1	Cluj-Napoca
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 \.
 
 
@@ -301,17 +316,26 @@ Pacurar	Sergiu	pacurarsergiu@yahoo.com	0744285504	Sergiu	vladimir	40	1630	1	1	46
 -- Name: client_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
+<<<<<<< HEAD
 SELECT pg_catalog.setval('client_id_seq', 1, true);
+=======
+SELECT pg_catalog.setval('client_id_seq', 2, true);
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 
 --
 -- Data for Name: owner; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+<<<<<<< HEAD
 COPY owner (first_name, last_name, email_address, phone_number, user_name, password, profit, id, enabled, client_user_name) FROM stdin;
 Pacurar	Ovidiu Paul	pacurarovidiupaul@live.com	0740013456	Ovidiu	maverick	5650	1	1	
 Pacurar	Mihaela	miha01ro@yahoo.com	0722128633	Miha	Tudor	2330	2	1	
 Gavris	Gelu	gelugavris@yahoo.com	0722435676	Gelu	vremuribune	2810	3	1	
+=======
+COPY owner (first_name, last_name, email_address, phone_number, user_name, password, profit, id, enabled) FROM stdin;
+Pacurar	Ovidiu	pacurarovidiupaul@live.com	0740013456	Ovidiu	maverick	0	1	1
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 \.
 
 
@@ -319,7 +343,7 @@ Gavris	Gelu	gelugavris@yahoo.com	0722435676	Gelu	vremuribune	2810	3	1
 -- Name: owner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('owner_id_seq', 3, true);
+SELECT pg_catalog.setval('owner_id_seq', 1, true);
 
 
 --
@@ -329,8 +353,12 @@ SELECT pg_catalog.setval('owner_id_seq', 3, true);
 COPY user_role (user_role_id, user_name, role) FROM stdin;
 1	Ovidiu	ROLE_OWNER
 2	Sergiu	ROLE_CLIENT
+<<<<<<< HEAD
 3	Miha	ROLE_OWNER
 4	Gelu	ROLE_OWNER
+=======
+3	Andrei	ROLE_CLIENT
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 \.
 
 
@@ -338,7 +366,11 @@ COPY user_role (user_role_id, user_name, role) FROM stdin;
 -- Name: user_role_user_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
+<<<<<<< HEAD
 SELECT pg_catalog.setval('user_role_user_role_id_seq', 4, true);
+=======
+SELECT pg_catalog.setval('user_role_user_role_id_seq', 3, true);
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 
 --
@@ -348,8 +380,12 @@ SELECT pg_catalog.setval('user_role_user_role_id_seq', 4, true);
 COPY users (id, user_name, password, enabled) FROM stdin;
 1	Ovidiu	maverick	1
 2	Sergiu	vladimir	1
+<<<<<<< HEAD
 3	Miha	Tudor	1
 4	Gelu	vremuribune	1
+=======
+3	Andrei	alex	1
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 \.
 
 
@@ -357,7 +393,11 @@ COPY users (id, user_name, password, enabled) FROM stdin;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
+<<<<<<< HEAD
 SELECT pg_catalog.setval('users_id_seq', 4, true);
+=======
+SELECT pg_catalog.setval('users_id_seq', 3, true);
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 
 --

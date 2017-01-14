@@ -36,6 +36,11 @@ public class OwnerService {
 		return dao.findById(id);
 
 	}
+	
+	public Owner getByUserName(String query) {
+		return dao.findByUserName(query);
+
+	}
 
 	public Owner getByUserName(String query) {
 		return dao.findByUserName(query);

@@ -82,7 +82,12 @@
 			<div class="input-group" style="width:80%">
 		  		<input type="text" name="startPositionLong" type="input" value="${car.startPositionLong!''}" class="form-control" placeholder="Start Position Longitude" aria-describedby="basic-addon1">
 			</div>
+<<<<<<< HEAD
 									
+=======
+					
+					
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 			<div class="input-group" style="width:80%">
 		  		<input type="double" name="price" type="input" value="${car.price!''}" class="form-control" placeholder="Price" aria-describedby="basic-addon1">
 			</div>

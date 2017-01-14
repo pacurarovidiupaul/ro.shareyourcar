@@ -16,10 +16,13 @@
 
 <body>
 
+<<<<<<< HEAD
 <form action="/client" method="post"> 
 			<input type="submit" class="button red big" value="Back to Client Main"  /> 			
 		</form>	
 
+=======
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 <h3>Car location</h3>
     <div id="map"></div>
 	

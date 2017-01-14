@@ -27,7 +27,11 @@ public class IMCarDAO extends IMBaseDAO<Car> implements CarDAO {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public boolean book(int days, Car model) {
+=======
+	public boolean book(Car model) {
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -44,6 +48,16 @@ public class IMCarDAO extends IMBaseDAO<Car> implements CarDAO {
 		return false;
 	}
 
+<<<<<<< HEAD
+=======
+
+	/*@Override
+	public Collection<Car> listByOwner(String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 	@Override
 	public Collection<Car> searchByUserName(String query) {
 		// TODO Auto-generated method stub
@@ -56,4 +70,8 @@ public class IMCarDAO extends IMBaseDAO<Car> implements CarDAO {
 		return null;
 	}
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 }

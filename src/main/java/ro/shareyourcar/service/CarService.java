@@ -21,7 +21,11 @@ public class CarService {
 	public Collection<Car> listAvailable() {
 		return dao.getAvailableCars();
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 	public Collection<Car> listBooked() {
 		return dao.getBookedCars();
 	}
@@ -40,6 +44,7 @@ public class CarService {
 		return false;
 	}
 
+<<<<<<< HEAD
 	public boolean book(int days, Long id) {
 		Car car = dao.findById(id);
 		if (car != null) {
@@ -58,10 +63,34 @@ public class CarService {
 		return false;
 	}
 
+=======
+	public boolean book(Long id) {
+		Car car = dao.findById(id);
+		if (car != null ) {
+				dao.book(car);	
+				return true;
+		}	
+	return false;
+	}
+
+
+
+	public boolean unBook(Long id) {
+		Car car = dao.findById(id);
+		if (car != null ) {
+				dao.unBook(car);	
+				return true;
+		}	
+	return false;
+	}
+
+
+>>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 	public Car get(Long id) {
 		return dao.findById(id);
 
 	}
+
 
 	public void save(Car car) throws ValidationException {
 		dao.update(car);
@@ -76,7 +105,11 @@ public class CarService {
 	}
 
 	public void setDao(CarDAO dao) {
-		this.dao = dao;
+		this.dao = dao;	
 	}
 
+	
+	
+	
+	
 }
