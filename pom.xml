@@ -21,6 +21,26 @@
 	</properties>
 
 	<dependencies>
+	
+	<repositories>
+        <repository>
+            <id>webjars</id>
+            <url>http://webjars.github.com/m2</url>
+        </repository>
+    </repositories>
+	
+	<dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.6</version>
+     </dependency>
+     
+     <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>1.9.1</version>
+     </dependency>
+        
 	<dependency>
     		<groupId>org.apache.tomcat.embed</groupId>
     		<artifactId>tomcat-embed-jasper</artifactId>
