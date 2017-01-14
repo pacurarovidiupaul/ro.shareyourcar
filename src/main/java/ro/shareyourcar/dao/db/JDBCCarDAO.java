@@ -83,16 +83,11 @@ public class JDBCCarDAO implements CarDAO {
 
 		return result;
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 	@Override
 	public Collection<Car> getBookedCars() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
-<<<<<<< HEAD
 
 		Connection connection = newConnection();
 
@@ -100,14 +95,6 @@ public class JDBCCarDAO implements CarDAO {
 
 		try (ResultSet rs = connection.createStatement()
 				.executeQuery("select * from car where client_user_name='" + currentPrincipalName + "'")) {
-=======
-		
-		Connection connection = newConnection();
-		
-		Collection<Car> result = new LinkedList<>();
-
-		try (ResultSet rs = connection.createStatement().executeQuery("select * from car where client_user_name='" + currentPrincipalName + "'")) {
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 			while (rs.next()) {
 				result.add(extractCar(rs));
@@ -126,10 +113,6 @@ public class JDBCCarDAO implements CarDAO {
 
 		return result;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 	@Override
 	public Car findById(Long id) {
@@ -162,7 +145,6 @@ public class JDBCCarDAO implements CarDAO {
 
 	@Override
 	public Car update(Car model) {
-<<<<<<< HEAD
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
@@ -174,29 +156,6 @@ public class JDBCCarDAO implements CarDAO {
 			ps = connection.prepareStatement(
 					"insert into car (license_plate, producer, model, type, year_of_production, nr_of_seats, fuel_tank_cap, consumption,start_position_lat,start_position_long, end_position_lat, end_position_long,  price, booked, owner_user_name ) "
 							+ "values (?, ?, ?, ?, ?, ?, ?, ? ,?,?,?,?,?,?,?) returning id");
-=======
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String currentPrincipalName = authentication.getName();
-	
-		Connection connection = newConnection();
-		try {
-			PreparedStatement ps = null;
-			
-			if (model.getId() > 0) {
-				ps = connection.prepareStatement(
-						"update car set license_plate=?, producer=?, model=?, type=?, year_of_production=?, nr_of_seats=?, fuel_tank_cap=? , consumption=?, start_position_lat=?, start_position_long=?, end_position_lat=?, end_position_long=?,  price=?, booked=?     "
-								+ "where id = ? returning id");
-
-			} else {
-
-				ps = connection.prepareStatement(
-						"insert into car (license_plate, producer, model, type, year_of_production, nr_of_seats, fuel_tank_cap, consumption,start_position_lat,start_position_long, end_position_lat, end_position_long,  price, booked, owner_user_name ) "
-								+ "values (?, ?, ?, ?, ?, ?, ?, ? ,?,?,?,?,?,?,?) returning id");
-
-				
-			}
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 			ps.setString(1, model.getLicensePlate());
 			ps.setString(2, model.getProducer());
@@ -211,14 +170,8 @@ public class JDBCCarDAO implements CarDAO {
 			ps.setString(11, model.getEndPositionLat());
 			ps.setString(12, model.getEndPositionLong());
 			ps.setDouble(13, model.getPrice());
-<<<<<<< HEAD
 			ps.setBoolean(14, model.isBooked());
 			ps.setString(15, currentPrincipalName);
-=======
-			ps.setBoolean(14, model.isBooked());	
-			ps.setString(15, currentPrincipalName);
-
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 			if (model.getId() > 0) {
 				ps.setLong(17, model.getId());
@@ -245,61 +198,8 @@ public class JDBCCarDAO implements CarDAO {
 
 		return model;
 	}
-	
-	@Override
-	public boolean book(Car model) {
-		boolean result = false;
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String currentPrincipalName = authentication.getName();
-		System.out.println(currentPrincipalName);
-		
-		Connection connection = newConnection();
-		try {
-			Statement statement = connection.createStatement();
-
-			result = statement.execute("update car set booked= 'true', client_user_name = '" + currentPrincipalName + "' where id = " + model.getId());
-
-			connection.commit();
-		} catch (SQLException ex) {
-
-			throw new RuntimeException("Error updating car.", ex);
-		} finally {
-			try {
-				connection.close();
-			} catch (Exception ex) {
-
-			}
-		}
-		return result;
-
-	}
 
 	@Override
-	public boolean unBook(Car model) {
-		boolean result = false;
-			Connection connection = newConnection();
-				try {
-					Statement statement = connection.createStatement();
-					result = statement.execute("update car set booked= 'false', client_user_name='' where id = " + model.getId());
-					connection.commit();
-				} catch (SQLException ex) {
-					throw new RuntimeException("Error updating car.", ex);
-				} finally {
-					try {
-						connection.close();
-					} catch (Exception ex) {
-
-					}
-				}
-			
-		
-		return result;
-
-	}
-
-	@Override
-<<<<<<< HEAD
 	public boolean book(int days, Car model) {
 		boolean result = false;
 		boolean result1 = false;
@@ -343,21 +243,6 @@ public class JDBCCarDAO implements CarDAO {
 			try {
 				connection.close();
 			} catch (Exception ex) {
-=======
-	public Car updateEdit(Car model) {
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String currentPrincipalName = authentication.getName();
-		
-		Connection connection = newConnection();
-		try {
-			PreparedStatement ps = null;
-		
-			if (model.getId() > 0) {
-				ps = connection.prepareStatement(
-						"update car set license_plate=?, producer=?, model=?, type=?, year_of_production=?, nr_of_seats=?, fuel_tank_cap=? , consumption=?, start_position_lat=?, start_position_long=?, end_position_lat=?, end_position_long=?,  price=?, booked=?, owner_user_name=?, client_user_name=? "
-								+ "where id = ? returning id");
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 			}
 		}
@@ -365,7 +250,6 @@ public class JDBCCarDAO implements CarDAO {
 
 	}
 
-<<<<<<< HEAD
 	@Override
 	public boolean unBook(Car model) {
 		boolean result1 = false;
@@ -373,9 +257,6 @@ public class JDBCCarDAO implements CarDAO {
 		boolean result3 = false;
 		boolean result4 = false;
 		boolean result = false;
-=======
-
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
@@ -438,10 +319,6 @@ public class JDBCCarDAO implements CarDAO {
 			ps.setBoolean(14, model.isBooked());
 			ps.setString(15, currentPrincipalName);
 			ps.setString(16, "");
-<<<<<<< HEAD
-=======
-			
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 			if (model.getId() > 0) {
 				ps.setLong(17, model.getId());
@@ -453,11 +330,6 @@ public class JDBCCarDAO implements CarDAO {
 			}
 			rs.close();
 
-<<<<<<< HEAD
-=======
-			
-
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 			connection.commit();
 
 		} catch (SQLException ex) {
@@ -508,14 +380,8 @@ public class JDBCCarDAO implements CarDAO {
 
 		Collection<Car> result = new LinkedList<>();
 
-<<<<<<< HEAD
 		try (ResultSet rs = connection.createStatement().executeQuery(
 				"select * from car " + "where lower(owner_user_name) like '%" + query.toLowerCase() + "%'")) {
-=======
-	
-		try (ResultSet rs = connection.createStatement()
-				.executeQuery("select * from car " + "where lower(owner_user_name) like '%" + query.toLowerCase() + "%'")) {
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 			while (rs.next()) {
 				result.add(extractCar(rs));
@@ -555,19 +421,15 @@ public class JDBCCarDAO implements CarDAO {
 		car.setType(rs.getString("type"));
 		car.setYearOfProduction(rs.getInt("year_of_production"));
 		car.setNrOfSeats(rs.getInt("nr_of_seats"));
-		car.setFuelTankCap(rs.getInt("fuel_tank_cap"));
-		car.setConsumption(rs.getInt("consumption"));
+		car.setFuelTankCap(rs.getDouble("fuel_tank_cap"));
+		car.setConsumption(rs.getDouble("consumption"));
 		car.setStartPositionLat(rs.getString("start_Position_Lat"));
 		car.setStartPositionLong(rs.getString("start_position_long"));
 		car.setEndPositionLat(rs.getString("end_position_lat"));
 		car.setEndPositionLong(rs.getString("end_position_long"));
-		car.setPrice(rs.getInt("price"));
+		car.setPrice(rs.getDouble("price"));
 		car.setBooked(rs.getBoolean("booked"));
-<<<<<<< HEAD
 		car.setOwnerUserName(rs.getString("owner_user_name"));
-=======
-	
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 		return car;
 
@@ -579,10 +441,4 @@ public class JDBCCarDAO implements CarDAO {
 		return null;
 	}
 
-<<<<<<< HEAD
-=======
-	
-	
-
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 }

@@ -29,10 +29,7 @@
 			<th>Fuel Tank (litres)</th>
 			<th>Consumption (l/km)</th>
 			<th>Show position</th>
-<<<<<<< HEAD
 			<th>Show route</th>
-=======
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 			<th>Price / km</th>
 			<th>UnBook</th>
 
@@ -43,10 +40,7 @@
 	<!-- begin iteration -->
 	[#if cars??]
 		[#list cars as car] 
-<<<<<<< HEAD
 		
-=======
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 			<tr>
 			    <td>${car.licensePlate}</td>
 				<td>${car.producer}</td>
@@ -59,12 +53,9 @@
 				<td><a href="/car/showpos?id=${car.id?c}&param1=${car.startPositionLat}&param2=${car.startPositionLong}">
 				<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
 				</a></td>
-<<<<<<< HEAD
 				<td><a href="/car/showroute?id=${car.id?c}&param1=${car.startPositionLat}&param2=${car.startPositionLong}&param3=${car.endPositionLat}=&param4=${car.endPositionLong}">                            
 				<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
 				</a></td>
-=======
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 				<td>${car.price}</td>
 				<td><a href="/car/unbook?id=${car.id?c}"> 
 				<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>

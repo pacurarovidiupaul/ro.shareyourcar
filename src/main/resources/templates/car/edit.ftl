@@ -82,7 +82,7 @@
 					
 					
 			<div class="input-group" style="width:80%">
-		  		<input type="double" name="price" type="input" value="${car.price!''}" class="form-control" placeholder="Price" aria-describedby="basic-addon1">
+		  		<input type="double" name="price" type="input" value="${car.price!''}" class="form-control" placeholder="Price/day" aria-describedby="basic-addon1">
 			</div>
 			
 			<input type="hidden" name="id" value="[#if car.id??]${car.id?c}[/#if]">

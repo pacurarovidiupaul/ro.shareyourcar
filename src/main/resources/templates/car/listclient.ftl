@@ -9,14 +9,9 @@
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-<<<<<<< HEAD
     <script src="[@spring.url '/js/bootstrap.min.js' /] "></script>  
     
    
-=======
-    <script src="[@spring.url '/js/bootstrap.min.js' /] "></script>
-
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 </head>
 [#escape x as x?html]
 
@@ -31,20 +26,13 @@
 			<th>Model</th>
 			<th>Type</th>
 			<th>Year Of Production</th>
-			<th>Nr Of Seats</th>
+			<th>Number Of Seats</th>
 			<th>Fuel Tank (litres)</th>
 			<th>Consumption (l/km)</th>
 			<th>Show position</th>
-			<th>Price / km</th>
+			<th>Price / day</th>
 			<th>Book</th>
-<<<<<<< HEAD
 				
-=======
-
-
-			
-		
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 	</tr>
 	<!-- begin iteration -->
 	[#if cars??]
@@ -61,7 +49,6 @@
 				<td><a href="/car/showpos?id=${car.id?c}&param1=${car.startPositionLat}&param2=${car.startPositionLong}">
 				<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
 				</a></td>
-<<<<<<< HEAD
 				<td>${car.price}</td>	
 				<td><form action="/car/book" method="POST">
 				<div class="input-group" style="width:60%">
@@ -71,13 +58,6 @@
 				<input type="submit" value="Book car!" onclick="myFunction()">
 				</a></td>
 			    </form>
-=======
-				<td>${car.price}</td>
-				<td><a href="/car/book?id=${car.id?c}"> 
-				<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
-				</a></td>
-							
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 			</tr>
 		[/#list]
 	[/#if]

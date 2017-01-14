@@ -25,11 +25,11 @@
 			<th>Model</th>
 			<th>Type</th>
 			<th>Year Of Production</th>
-			<th>Nr Of Seats</th>
+			<th>Number Of Seats</th>
 			<th>Fuel Tank (litres)</th>
 			<th>Consumption (l/km)</th>
 			<th>Show position</th>
-			<th>Price / km</th>
+			<th>Price / day</th>
 			<th>Booked</th>
 			<th>Delete Car</th>	
 			<th>Edit Car</th>
@@ -54,9 +54,12 @@
 				</a></td>
 				<td>${car.price}</td>
 				<td>${car.booked?c}</td>
-				<td><a href="/car/delete?id=${car.id?c}">
-				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-				</a></td>				
+				<td><form action="/car/delete" method="POST">
+			<div class="input-group" style="width:80%">
+		  		<input type="hidden" name="id" type="input" value="${car.id!''}" class="form-control">
+		  		<input type="hidden" name="id" value="[#if car.id??]${car.id?c}[/#if]">
+			<input type="submit" value="Delete your car!">	
+			</form>		
 				<td><form action="/car/edit" method="POST">
 			<div class="input-group" style="width:80%">
 		  		<input type="hidden" name="id" type="input" value="${car.id!''}" class="form-control">

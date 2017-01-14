@@ -8,8 +8,8 @@ public class Client extends AbstractModel {
 	private String phoneNumber;
 	private String userName;
 	private String password;
-	private int age;
-	private double wallet;
+	private Integer age;
+	private Double wallet;
 	private String currentLocation;
 	private String currentLocationLong;
 
@@ -61,19 +61,19 @@ public class Client extends AbstractModel {
 		this.password = password;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
-	public double getWallet() {
+	public Double getWallet() {
 		return wallet;
 	}
 
-	public void setWallet(double wallet) {
+	public void setWallet(Double wallet) {
 		this.wallet = wallet;
 	}
 

@@ -25,14 +25,13 @@
 			<th>Model</th>
 			<th>Type</th>
 			<th>Year Of Production</th>
-			<th>Nr Of Seats</th>
+			<th>Number Of Seats</th>
 			<th>Fuel Tank (litres)</th>
 			<th>Consumption (l/km)</th>
 			<th>Show position</th>
-			<th>Price / km</th>
+			<th>Price / day</th>
 			<th>Booked</th>
-			<th>Delete Car</th>	
-			<th>Edit Car</th>
+			
 			
 			
 		
@@ -49,18 +48,17 @@
 				<td>${car.nrOfSeats}</td>
 				<td>${car.fuelTankCap}</td>
 				<td>${car.consumption}</td>
-<<<<<<< HEAD
 				<td><a href="/owner/showpos?id=${car.id?c}&param1=${car.startPositionLat}&param2=${car.startPositionLong}">
-=======
-				<td><a href="/car/showpos?id=${car.id?c}&param1=${car.startPositionLat}&param2=${car.startPositionLong}">
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 				<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
 				</a></td>
 				<td>${car.price}</td>
 				<td>${car.booked?c}</td>
-				<td><a href="/car/delete?id=${car.id?c}">
-				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-				</a></td>				
+				<td><form action="/car/delete" method="POST">
+			<div class="input-group" style="width:80%">
+		  		<input type="hidden" name="id" type="input" value="${car.id!''}" class="form-control">
+		  		<input type="hidden" name="id" value="[#if car.id??]${car.id?c}[/#if]">
+			<input type="submit" value="Delete your car!">
+		</form>				
 				<td><form action="/car/edit" method="POST">
 			<div class="input-group" style="width:80%">
 		  		<input type="hidden" name="id" type="input" value="${car.id!''}" class="form-control">

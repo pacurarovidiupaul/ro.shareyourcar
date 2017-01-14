@@ -12,31 +12,18 @@ public class Car extends AbstractModel {
 	private String producer;
 	private String model;
 	private String type;
-	private int yearOfProduction;
-	private int nrOfSeats;
-	private double fuelTankCap;
-	private double consumption;
+	private Integer yearOfProduction;
+	private Integer nrOfSeats;
+	private Double fuelTankCap;
+	private Double consumption;
 	private String startPositionLat;
 	private String startPositionLong;
 	private String endPositionLat;
 	private String endPositionLong;
-	private double price;
+	private Double price;
 	private boolean booked;
-<<<<<<< HEAD
 	private String ownerUserName;
 
-=======
-	private long ownerId;
-	
-	
-	
-	public long getOwnerId() {
-		return ownerId;
-	}
-	public void setOwnerId(long ownerId) {
-		this.ownerId = ownerId;
-	}
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 	public String getProducer() {
 		return producer;
 	}
@@ -69,43 +56,43 @@ public class Car extends AbstractModel {
 		this.type = type;
 	}
 
-	public int getYearOfProduction() {
+	public Integer getYearOfProduction() {
 		return yearOfProduction;
 	}
 
-	public void setYearOfProduction(int yearOfProduction) {
+	public void setYearOfProduction(Integer yearOfProduction) {
 		this.yearOfProduction = yearOfProduction;
 	}
 
-	public int getNrOfSeats() {
+	public Integer getNrOfSeats() {
 		return nrOfSeats;
 	}
 
-	public void setNrOfSeats(int nrOfSeats) {
+	public void setNrOfSeats(Integer nrOfSeats) {
 		this.nrOfSeats = nrOfSeats;
 	}
 
-	public double getFuelTankCap() {
+	public Double getFuelTankCap() {
 		return fuelTankCap;
 	}
 
-	public void setFuelTankCap(int fuelTankCap) {
+	public void setFuelTankCap(Double fuelTankCap) {
 		this.fuelTankCap = fuelTankCap;
 	}
 
-	public double getConsumption() {
+	public Double getConsumption() {
 		return consumption;
 	}
 
-	public void setConsumption(int consumption) {
+	public void setConsumption(Double consumption) {
 		this.consumption = consumption;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

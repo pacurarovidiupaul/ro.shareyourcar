@@ -23,7 +23,6 @@ public class OwnerController {
 
 	@Autowired
 	private OwnerService ownerService;
-	
 
 	@RequestMapping("add")
 	public ModelAndView renderAdd() {
@@ -39,14 +38,8 @@ public class OwnerController {
 		ModelAndView modelAndView = new ModelAndView("owner/edit");
 		modelAndView.addObject("owner", ownerService.getByUserName(currentPrincipalName));
 		return modelAndView;
-<<<<<<< HEAD
 
 	}
-=======
-		
-		}
-	
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 	@RequestMapping("save")
 	public ModelAndView save(@Valid @ModelAttribute("owner") Owner owner, BindingResult bindingResult) {
@@ -120,13 +113,6 @@ public class OwnerController {
 		ModelAndView modelAndView = new ModelAndView("owner/list");
 		modelAndView.addObject("owners", ownerService.search(currentPrincipalName));
 		return modelAndView;
-<<<<<<< HEAD
-=======
-		
-
-		
-	}
->>>>>>> e38bc0ad42ed5c1dd45659a8bf9af70588edfae3
 
 	}
 

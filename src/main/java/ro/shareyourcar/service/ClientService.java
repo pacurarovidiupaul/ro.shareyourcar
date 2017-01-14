@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import ro.shareyourcar.dao.ClientDAO;
 import ro.shareyourcar.domain.Client;
 
-
 @Service
 public class ClientService {
 
@@ -35,11 +34,6 @@ public class ClientService {
 
 	public Client get(Long id) {
 		return dao.findById(id);
-
-	}
-	
-	public Client getByUserName(String query) {
-		return dao.findByUserName(query);
 
 	}
 
