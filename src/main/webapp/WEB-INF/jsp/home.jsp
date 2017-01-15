@@ -38,8 +38,9 @@
                         <a href="#services">Services</a>
                     </li>
                     <li>
-                        <a href="#contact">Contact</a>
+                        <a href="#contact">Join</a>
                     </li>
+                    
                     <li>
                     	<div class="dropdown">
                     	<div class= "topright" >	    			
@@ -60,41 +61,43 @@
         </div>
         <!-- /.container -->
     </nav>
-
+    
 <!-- Header image -->
 <header class="image">
         <div class="headline">
             <div class="container">
                 <h1>Share your car</h1>
-                <h2>The best carshareing site ever</h2>
-            </div>
+                <h2>The best carsharing site ever</h2>
+			</div>	
         </div>
 </header>
 
   <div class="container">
-  
- 
-
+  <div class="btn-group " style = "position:fixed; right:0">
+              			<a href="/login"><button type="button" class="btn btn-warning btn-lg" aria-haspopup="true" aria-expanded="false">
+    					Sign in
+						</button></a>		
+            		</div>
         <hr class="featurette-divider">
 
         <!-- First Featurette -->
         <div class="featurette" id="about">
-            <img class="featurette-image img-circle img-responsive pull-right" src="https://s-media-cache-ak0.pinimg.com/736x/7a/e6/98/7ae698152aedab7098de98f22072e3a2.jpg">
-            <h2 class="featurette-heading">This First Heading
-                <span class="text-muted">Will Catch Your Eye</span>
+            <img class="featurette-image img-circle img-responsive pull-right" src="/images/featurette1.jpg">
+            <h2 class="featurette-heading">Be smart.
+                <span class="text-muted">Get there smarter!</span>
             </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">Carsharing should make it easy for you to get there and back. Wide variety of cars. With the latest technologies. And the best prices. With ShareYourCar that’s what you get.</p>
         </div>
         
         <hr class="featurette-divider">
 
         <!-- Second Featurette -->
         <div class="featurette" id="services">
-            <img class="featurette-image img-circle img-responsive pull-left" src="http://i.imgur.com/RmyKdIV.jpg">
-            <h2 class="featurette-heading">The Second Heading
-                <span class="text-muted">Is Pretty Cool Too.</span>
+            <img class="featurette-image img-circle img-responsive pull-left" src="/images/featurette2.jpg">
+            <h2 class="featurette-heading">New concept of carsharing
+                <span class="text-muted">gives you freedom!</span>
             </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">You can use a car just as much as you need. Fuel costs are also included even the road taxes. No hidden costs, this means the new carsharing service.</p>
         </div>
         
         <hr class="featurette-divider">
@@ -102,10 +105,10 @@
         <!-- Third Featurette -->
         <div class="featurette" id="contact">
             <img class="featurette-image img-circle img-responsive pull-right" src="/images/driving.jpg">
-            <h2 class="featurette-heading">The Third Heading
-                <span class="text-muted">Will Seal the Deal.</span>
+            <h2 class="featurette-heading">Are you ready?
+                <span class="text-muted">Let's dive!</span>
             </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">Membership is free for unlimited time. So sign up and get ready to hit the road. It’s fast. It’s fun. And there’s nothing else like it.</p>
         </div>
 
         <hr class="featurette-divider">

@@ -1,7 +1,40 @@
 body.add {
     margin-top: 50px; 
-	 background-color: white !important;
+	
 }
+body.add { 
+  background-image: url("/images/owner-add.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+ 
+}
+
+body.addclient { 
+  background-image: url("/images/client-add.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+ 
+}
+
+
+.headline {
+    padding: 120px 0;
+}
+
+
+.btn-warning {
+    color: #272B2B;
+    background-color: #FEEA58;
+    border-color: #FEEA58; 
+    width: 100%;
+}
+
 
 .topright {
     position: fixed;

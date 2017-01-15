@@ -6,21 +6,22 @@ body.home {
 header.image {
     display: block;
     width: 100%;
-    height: 50%;
+    height: 30%;
     
     text-align: center;
-    background: url('http://www.ibmanager.org/img/home.jpg') no-repeat center center scroll;
+    background: url('/images/header.jpg') no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
+
 .headline {
     padding: 120px 0;
 }
 
 .headline h1 {
-    font-size: 130px;
+    font-size: 120px;
     background: #fff;
     background: rgba(255,255,255,0.9);
     
@@ -214,23 +215,6 @@ body.security-app {
     height: 100%;
     width:100%;
     background:#edecec;
-}
-
-.lc-block {
-    padding: 35px 55px 35px;
-    background: #fff;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    border-radius: 2px;
-    width: 30%;
-    display: inline-block;
-    position: relative;
-    animation-name: fadeInUp;
-    animation-duration: 300ms;
-    animation-fill-mode: both;
-    z-index: 10;
-    margin-top:5%;
-    vertical-align:middle;
-    
 }
 
 body.security-app:before {
