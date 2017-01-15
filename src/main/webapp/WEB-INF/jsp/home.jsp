@@ -32,13 +32,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#about">About</a>
+                        <a class="page-scroll" href="#about" class= "page-scroll">About</a>
                     </li>
                     <li>
-                        <a href="#services">Services</a>
+                        <a class="page-scroll" href="#services">Services</a>
                     </li>
                     <li>
-                        <a href="#contact">Join</a>
+                        <a class="page-scroll" href="#contact">Join</a>
                     </li>
                     
                     <li>
@@ -75,7 +75,7 @@
   <div class="container">
   <div class="dropdown">
   <div class="btn-group dropup" style = "position:fixed; right:0; ">
-        <a href="/login"><button type="button" class="btn btn-warning btn-lg" aria-haspopup="true" aria-expanded="false" style = "margin:-2px">
+        <a href="/login"><button type="button" class="btn btn-primary btn-lg" aria-haspopup="true" aria-expanded="false" style = "margin:-2px">
     	Sign in
 		</button></a>
 			<ul class="dropdown-menu dropup">
@@ -136,7 +136,10 @@
 	
 	 <!-- Bootstrap Core JavaScript -->
     <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    
+   
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/scrolling-nav.js"></script>
        
 </body>
 </html>
