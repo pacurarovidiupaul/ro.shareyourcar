@@ -39,14 +39,19 @@
          <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">                 
-                    <li>            	
+                    <li>       
+                   		<div class="dropdown">    	
                     	<div class= "topright" >	    			
-                   			<a href="/login"><button type="button" class="btn btn-warning" aria-haspopup="true" aria-expanded="false">
+                   			<button type="button" class="btn btn-warning" aria-haspopup="true" aria-expanded="false">
     							Sign in
-							</button></a>		
-                   		</div>	
-                   	</li>	
- 							
+							</button>
+							<ul class="dropdown-menu dropup">
+    							<li><a class="dropdown-item" href="/owner">as Owner</a></li>
+    							<li><a class="dropdown-item" href="/client">as Client</a></li>
+  							</ul>	
+				        </div>
+				        </div>
+                   	</li>			
                 </ul>
 			</div>
             <!-- /.navbar-collapse -->

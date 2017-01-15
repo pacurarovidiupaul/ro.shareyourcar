@@ -42,3 +42,22 @@ body.addclient {
     right: 100px;
     font-size: 18px;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+@media (min-width: 768px) {
+    .dropdown-menu {
+        border: none;
+        
+        margin-top: -1px;
+    }
+}
