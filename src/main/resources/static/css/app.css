@@ -60,6 +60,15 @@ header.image {
     }
 }
 
+@media (min-width: 768px) {
+    .dropdown-menu {
+        border: none;
+        
+        margin-top: -1px;
+        margin-bottom: 1px;
+    }
+}
+
 .topright {
     position: fixed;
     top: 8px;

@@ -55,6 +55,14 @@ body.add {
     font-size: 18px;
 }
 
+@media (min-width: 768px) {
+    .dropdown-menu {
+        border: none;
+        
+        margin-top: -1px;
+    }
+}
+
 
 
 
