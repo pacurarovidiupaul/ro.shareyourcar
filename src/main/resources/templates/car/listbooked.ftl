@@ -30,7 +30,7 @@
 			<th>Consumption (l/km)</th>
 			<th>Show position</th>
 			<th>Show route</th>
-			<th>Price / km</th>
+			<th>Price / day</th>
 			<th>UnBook</th>
 
 

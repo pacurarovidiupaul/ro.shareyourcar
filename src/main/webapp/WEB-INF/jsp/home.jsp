@@ -43,13 +43,27 @@
                     
                     <li>
                     	<div class="dropdown">
-                    	<div class= "topright" >	    			
+                    	<div class= "toprightsignup" >	    			
                    			<button type="button" class="btn btn-warning" aria-haspopup="true" aria-expanded="false">
     							Sign up
 							</button>
   							<ul class="dropdown-menu ">
     							<li><a class="dropdown-item" href="/owner/add">as Owner</a></li>
     							<li><a class="dropdown-item" href="/client/add">as Client</a></li>
+  								</ul>
+						</div>
+                   		</div>	
+                   	</li>	
+                   	
+                   	 <li>
+                    	<div class="dropdown">
+                    	<div class= "toprightsignin" >	    			
+                   			<button type="button" class="btn btn-warning" aria-haspopup="true" aria-expanded="false">
+    							Sign in
+							</button>
+  							<ul class="dropdown-menu ">
+    							<li><a class="dropdown-item" href="/owner/">as Owner</a></li>
+    							<li><a class="dropdown-item" href="/client/">as Client</a></li>
   								</ul>
 						</div>
                    		</div>	
@@ -71,20 +85,6 @@
 			</div>	
         </div>
 </header>
-
-  <div class="container">
-  <div class="dropdown">
-  <div class="btn-group dropup" style = "position:fixed; right:0; ">
-        <a href="/login"><button type="button" class="btn btn-primary btn-lg" aria-haspopup="true" aria-expanded="false" style = "margin:-2px">
-    	Sign in
-		</button></a>
-			<ul class="dropdown-menu dropup">
-    			<li><a class="dropdown-item" href="/owner">as Owner</a></li>
-    			<li><a class="dropdown-item" href="/client">as Client</a></li>
-  			</ul>	
-         </div>
-      </div>
-        <hr class="featurette-divider">
 
         <!-- First Featurette -->
         <div class="featurette" id="about">
@@ -112,7 +112,7 @@
         <div class="featurette" id="contact">
             <img class="featurette-image img-circle img-responsive pull-right" src="/images/driving.jpg">
             <h2 class="featurette-heading">Are you ready?
-                <span class="text-muted">Let's dive!</span>
+                <span class="text-muted">Let's drive!</span>
             </h2>
             <p class="lead">Membership is free for unlimited time. So sign up and get ready to hit the road. It’s fast. It’s fun. And there’s nothing else like it.</p>
         </div>

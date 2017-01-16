@@ -159,7 +159,7 @@ public class JDBCOwnerDAO implements OwnerDAO {
 			PreparedStatement ps = null;
 		
 				ps = connection.prepareStatement(
-						"update owner set first_name=?, last_name=?, email_address=?, phone_number=?, user_name=?, password=?, profit=? "
+						"update owner set first_name=?, last_name=?, email_address=?, phone_number=?, user_name=?, password=? "
 								+ "where id = ? returning id");
 
 			ps.setString(1, model.getFirstName());
@@ -168,11 +168,11 @@ public class JDBCOwnerDAO implements OwnerDAO {
 			ps.setString(4, model.getPhoneNumber());
 			ps.setString(5, model.getUserName());
 			ps.setString(6, model.getPassword());
-			ps.setDouble(7, model.getProfit());
+			
 
 
 			if (model.getId() > 0) {
-				ps.setLong(8, model.getId());
+				ps.setLong(7, model.getId());
 				
 			}
 

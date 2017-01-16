@@ -7,12 +7,25 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Car extends AbstractModel {
 
 	@NotEmpty
-	@Size(min = 2, max = 60)
+	@Size(min = 2, max = 20)
 	private String licensePlate;
+	
+	@NotEmpty
+	@Size(min = 1, max = 20)
 	private String producer;
+	
+	@NotEmpty
+	@Size(min = 1, max = 20)
 	private String model;
+	
+	@NotEmpty
+	@Size(min = 2, max = 20)
 	private String type;
-	private Integer yearOfProduction;
+	
+	@NotEmpty
+	@Size(min = 4, max = 4)
+	private String yearOfProduction;
+	
 	private Integer nrOfSeats;
 	private Double fuelTankCap;
 	private Double consumption;
@@ -56,11 +69,11 @@ public class Car extends AbstractModel {
 		this.type = type;
 	}
 
-	public Integer getYearOfProduction() {
+	public String getYearOfProduction() {
 		return yearOfProduction;
 	}
 
-	public void setYearOfProduction(Integer yearOfProduction) {
+	public void setYearOfProduction(String yearOfProduction) {
 		this.yearOfProduction = yearOfProduction;
 	}
 

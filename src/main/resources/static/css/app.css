@@ -92,7 +92,14 @@ header.image {
     }
 }
 
-.topright {
+.toprightsignup {
+    position: fixed;
+    top: 8px;
+    right: 200px;
+    font-size: 18px;
+}
+
+.toprightsignin {
     position: fixed;
     top: 8px;
     right: 100px;

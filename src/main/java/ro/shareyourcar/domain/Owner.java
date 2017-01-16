@@ -23,9 +23,11 @@ public class Owner extends AbstractModel {
 	private String phoneNumber;
 
 	@NotEmpty
+	@Size(min = 3, max = 15)
 	private String userName;
 
 	@NotEmpty
+	@Size(min = 6, max = 15)
 	private String password;
 
 	private double profit;
@@ -97,12 +99,15 @@ public class Owner extends AbstractModel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
-		result = prime * result + ((emailAddress == null) ? 0 : emailAddress.hashCode());
+		long temp;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((emailAddress == null) ? 0 : emailAddress.hashCode());
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());		
+		temp = Double.doubleToLongBits(profit);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 
 		return result;
 	}

@@ -161,7 +161,7 @@ public class JDBCCarDAO implements CarDAO {
 			ps.setString(2, model.getProducer());
 			ps.setString(3, model.getModel());
 			ps.setString(4, model.getType());
-			ps.setInt(5, model.getYearOfProduction());
+			ps.setString(5, model.getYearOfProduction());
 			ps.setInt(6, model.getNrOfSeats());
 			ps.setDouble(7, model.getFuelTankCap());
 			ps.setDouble(8, model.getConsumption());
@@ -243,9 +243,9 @@ public class JDBCCarDAO implements CarDAO {
 			try {
 				connection.close();
 			} catch (Exception ex) {
-
 			}
 		}
+		
 		return result;
 
 	}
@@ -307,7 +307,7 @@ public class JDBCCarDAO implements CarDAO {
 			ps.setString(2, model.getProducer());
 			ps.setString(3, model.getModel());
 			ps.setString(4, model.getType());
-			ps.setInt(5, model.getYearOfProduction());
+			ps.setString(5, model.getYearOfProduction());
 			ps.setInt(6, model.getNrOfSeats());
 			ps.setDouble(7, model.getFuelTankCap());
 			ps.setDouble(8, model.getConsumption());
@@ -419,7 +419,7 @@ public class JDBCCarDAO implements CarDAO {
 		car.setProducer(rs.getString("producer"));
 		car.setModel(rs.getString("model"));
 		car.setType(rs.getString("type"));
-		car.setYearOfProduction(rs.getInt("year_of_production"));
+		car.setYearOfProduction(rs.getString("year_of_production"));
 		car.setNrOfSeats(rs.getInt("nr_of_seats"));
 		car.setFuelTankCap(rs.getDouble("fuel_tank_cap"));
 		car.setConsumption(rs.getDouble("consumption"));
