@@ -83,7 +83,8 @@
 </table>
 </div>
 <form action="/logout" method="post"> 
-			<input type="submit" class="button red big" value="Sign OUT"  /> 
+			<input type="submit" class=""btn btn-warning" aria-haspopup="true" aria-expanded="false"> value="Sign OUT"  /> 
+			
 			
 			
 			

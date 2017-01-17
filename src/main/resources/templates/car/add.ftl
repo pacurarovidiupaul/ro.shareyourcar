@@ -36,14 +36,13 @@
     </nav>
 <p></p>
 </body>
+
 <div class="panel panel-default" style="width:50%; margin:0 auto;">
   <div class="panel-heading">
     <h3 class="panel-title">Add car</h3>
   </div>
   
   
-	
-	
   <div class="panel-body">
   
     [#if errors??]
