@@ -75,11 +75,11 @@
 </div>
 
 <form action="/car/booked" method="post"> 
-			<input type="submit" class="button red big" value="View your Booked Cars!"  /> 		
+			<input type="submit" class="button red big" value="View your Booked Cars!"/> 		
 		</form>	
 
 <form action="/logout" method="post"> 
-			<input type="submit" class=""btn btn-warning" aria-haspopup="true" aria-expanded=" false"Sign OUT"  /> 		
+			<input type="submit" value="Sign out!" class="btn btn-primary btn-lg" aria-expanded="false"/> 		
 		</form>	
 
 	
