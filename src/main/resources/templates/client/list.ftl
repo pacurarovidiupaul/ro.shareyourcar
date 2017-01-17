@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Share your car!</title>
+    
     <link  href="[@spring.url '/css/bootstrap.min.css' /]" rel="stylesheet">
+    <link href="[@spring.url '/css/signup.css' /]" rel="stylesheet" type="text/css">
+    
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -13,6 +16,28 @@
 
 </head>
 [#escape x as x?html]
+
+ <body class="addclient">
+ <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    
+                </button>
+                <a class="navbar-brand" href="/home" style="color: #FEEA58">ShareYourCar </a>
+            </div>
+          </div>
+        <!-- /.container -->
+    </nav>
+<p></p>
+</body>
+
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
@@ -58,5 +83,5 @@
 		</form>	
 
 	
-
+</body>
 [/#escape]
