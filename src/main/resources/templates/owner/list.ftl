@@ -83,7 +83,10 @@
 </table>
 </div>
 <form action="/logout" method="post"> 
-			<input type="submit" value="Sign out!" class="btn btn-primary btn-lg" aria-expanded="false"/> 
+           <div class="container">
+           <div class="dropdown">
+           <div class="btn-group dropup"> 
+		   <input type="submit" value="Sign out!" class="btn btn-warning" aria-expanded="false"/> 	
 			
 			
 			

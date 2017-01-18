@@ -97,7 +97,7 @@
 
 				
 <form action="/client" method="post"> 
-			<input type="submit" class="button red big" value="Back to Client Main"  /> 			
+			<input type="submit" class="btn btn-primary btn-lg" aria-expanded="false" value="Back to Client Main"  /> 			
 		</form>	
 
 	

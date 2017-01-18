@@ -55,6 +55,19 @@
                    		</div>	
                    	</li>	
                    	
+                   	<li>
+                    	<div class="dropdown">
+                    	<div class= "toprightsignin" >	    			
+                   			<button type="button" class="btn btn-warning" aria-haspopup="true" aria-expanded="false">
+    							Sign in
+							</button>
+  							<ul class="dropdown-menu ">
+    							<li><a class="dropdown-item" href="/owner">as Owner</a></li>
+    							<li><a class="dropdown-item" href="/client">as Client</a></li>
+  								</ul>
+						</div>
+                   		</div>	
+                   	</li>	
                 
  							
                 </ul>
@@ -80,13 +93,7 @@
   <div class="container">
   <div class="dropdown">
   <div class="btn-group dropup" style = "position:fixed; right:0; ">
-        <button type="button" class="btn btn-primary btn-lg" aria-haspopup="true" aria-expanded="false" style = "margin:-2px">
-    	Sign in
-		</button></a>
-			<ul class="dropdown-menu dropup">
-    			<li><a class="dropdown-item" href="/owner">as Owner</a></li>
-    			<li><a class="dropdown-item" href="/client">as Client</a></li>
-  			</ul>	
+      
          </div>
       </div>
         <hr class="featurette-divider">

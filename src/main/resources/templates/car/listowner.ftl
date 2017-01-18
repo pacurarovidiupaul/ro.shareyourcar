@@ -84,7 +84,7 @@
 		</form>				
 				<td><form action="/car/edit" method="POST">
 			<div class="input-group" style="width:80%">
-		  		<input type="hidden" name="id" type="input" value="${car.id!''}" class="form-control">
+		  		<input type="hidden" name="id" type="input" value="${car.id!''}" class="btn btn-primary btn-lg">
 		  		<input type="hidden" name="id" value="[#if car.id??]${car.id?c}[/#if]">
 			<input type="submit" value="Edit your car!">
 		</form>
@@ -103,7 +103,7 @@
 
 				
 <form action="/owner" method="post"> 
-			<input type="submit" class="button red big" value="Back to Owner Main"  /> 			
+			<input type="submit" class="btn btn-primary" value="Back to Owner Main"  /> 			
 		</form>	
 
 	

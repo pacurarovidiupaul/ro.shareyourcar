@@ -77,7 +77,7 @@
 		  		<input type="number" min="1" max="30" name="days" type="input" class="form-control" placeholder="Nr. of days" aria-describedby="basic-addon1" required/	>
 			    </div>
 			    <input type="hidden" name="id" value="${car.id?c}">
-				<input type="submit" value="Book car!" onclick="myFunction()">
+				<input type="submit" value="Book car!" class="btn btn-primary" aria-expanded="false">
 				</a></td>
 			    </form>
 			</tr>
@@ -93,7 +93,7 @@
 
 				
 <form action="/client" method="post"> 
-			<input type="submit" class="button red big" value="Back to Client Main"  /> 			
+			<input type="submit" class="btn btn-primary btn-lg" aria-expanded="false" value="Back to Client Main"  /> 			
 		</form>	
 
 	
