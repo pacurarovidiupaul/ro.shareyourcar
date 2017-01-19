@@ -201,7 +201,7 @@ public class JDBCCarDAO implements CarDAO {
 
 	@Override
 	public boolean book(int days, Car model) {
-		boolean result = false;
+		boolean result = false;		
 		boolean result1 = false;
 		boolean result2 = false;
 		boolean result3 = false;
@@ -221,10 +221,10 @@ public class JDBCCarDAO implements CarDAO {
 			result2 = statement.execute("update client set wallet=wallet-" + model.getPrice() * days
 					+ " where user_name= '" + currentPrincipalName + "'");
 			result3 = statement.execute(
-					"update owner set client_user_name =  (select client_user_name from car where owner_user_name = '"
-							+ model.getOwnerUserName() + "') where user_name='" + model.getOwnerUserName() + "'");
+					"update owner set client_user_name =  (select client_user_name from car where id = '"
+							+ model.getId() + "') where user_name='" + model.getOwnerUserName() + "'");
 			result4 = statement.execute("update owner set profit=profit+" + model.getPrice() * days
-					+ " where client_user_name= '" + currentPrincipalName + "'");
+					+ " where user_name='" + model.getOwnerUserName() +"'");
 			result5 = statement
 					.execute("update car set end_position_lat= (select current_location from client where user_name= '"
 							+ currentPrincipalName + "') where id = " + model.getId() + " ");
@@ -232,7 +232,7 @@ public class JDBCCarDAO implements CarDAO {
 					"update car set end_position_long= (select current_location_long from client where user_name= '"
 							+ currentPrincipalName + "') where id = " + model.getId() + " ");
 
-			if (result1 & result2 & result3 & result4 & result5 & result6) {
+			if (result1 && result2 && result3 && result4 && result5 && result6) {
 				result = true;
 			}
 			connection.commit();
