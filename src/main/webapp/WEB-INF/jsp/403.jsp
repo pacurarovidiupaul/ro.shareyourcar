@@ -9,29 +9,23 @@
 	<link href="<spring:url value="css/app.css" />" rel="stylesheet" type="text/css">	
 	<title>Share your car!</title>
 </head>
-<body class="done">
 
+<body class="done">
  <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-            <a class="navbar-brand" href="#" style="color: #FEEA58">Ooopppssss, sorry for inconvenience! Sign up with another account! </a>
-            <a class="navbar-brand" a href="/home" style="color:#DC143C"> Back to home page!</a>	
-	</div>
-
- <hr class="featurette-divider">
-        <!-- First Featurette -->
-        <div class="featurette" id="about">
-            <img class="featurette-image img-circle img-responsive pull-right" src="/images/featurette1.jpg">
-            <h2 class="featurette-heading">
-                <span class="text-muted"></span>
-            </h2>
-            <p class="lead"></p>
-        </div>
-        
-        <hr class="featurette-divider">
-
-      
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    
+                </button>
+                <a class="navbar-brand" href="/home" style="color: #FEEA58">ShareYourCar </a>
+                <a class="navbar-brand" href="/home" style="color: #BCC2C4">Ooopppssss, sorry for inconvenience! Sign up with another account! </a>
+            </div>
+ 
 </body>
 </html>
