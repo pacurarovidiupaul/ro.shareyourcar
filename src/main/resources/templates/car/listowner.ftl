@@ -78,12 +78,14 @@
 				<td>${car.booked?c}</td>
 				<td><form action="/car/delete" method="POST">
 			<div class="input-group" style="width:80%">
+			    <input type="hidden" name="ownerUserName" type="input" value="${car.ownerUserName!''}" class="form-control">
 		  		<input type="hidden" name="id" type="input" value="${car.id!''}" class="form-control">
 		  		<input type="hidden" name="id" value="[#if car.id??]${car.id?c}[/#if]">
 			<input type="submit" value="Delete your car!">
 		</form>				
 				<td><form action="/car/edit" method="POST">
 			<div class="input-group" style="width:80%">
+			    <input type="hidden" name="ownerUserName" type="input" value="${car.ownerUserName!''}" class="form-control">
 		  		<input type="hidden" name="id" type="input" value="${car.id!''}" class="btn btn-primary btn-lg">
 		  		<input type="hidden" name="id" value="[#if car.id??]${car.id?c}[/#if]">
 			<input type="submit" value="Edit your car!">

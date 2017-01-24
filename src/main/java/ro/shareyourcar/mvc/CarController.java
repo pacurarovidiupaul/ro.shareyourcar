@@ -32,10 +32,16 @@ public class CarController {
 	}
 
 	@RequestMapping("edit")
-	public ModelAndView renderEdit(long id) {
+	public ModelAndView renderEdit(Car car, long id) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		if(currentPrincipalName.equals(car.getOwnerUserName())){
 		ModelAndView modelAndView = new ModelAndView("car/edit");
 		modelAndView.addObject("car", carService.get(id));
-		return modelAndView;
+		return modelAndView;}
+		else { ModelAndView modelAndView = new ModelAndView("car/list");
+		modelAndView.setView(new RedirectView("list"));
+		return modelAndView;}
 	}
 
 	@RequestMapping("save")
@@ -127,12 +133,20 @@ public class CarController {
 	}
 
 	@RequestMapping("delete")
-	public ModelAndView delete(long id) throws Exception {
+	public ModelAndView delete(Car car, long id) throws Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		if(currentPrincipalName.equals(car.getOwnerUserName())){
 		ModelAndView modelAndView = new ModelAndView("car/list");
 		modelAndView.addObject("cars", carService.delete(id));
 		modelAndView.setView(new RedirectView("list"));
-		return modelAndView;
-	}
+		return modelAndView;}
+		else {
+			ModelAndView modelAndView = new ModelAndView("car/list");
+			modelAndView.setView(new RedirectView("list"));
+			return modelAndView;
+		}
+		}
 
 	@RequestMapping("book")
 	public ModelAndView book(int days, long id) throws Exception {

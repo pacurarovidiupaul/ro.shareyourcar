@@ -201,7 +201,7 @@ public class JDBCCarDAO implements CarDAO {
 
 	@Override
 	public boolean book(int days, Car model) {
-		boolean result = false;		
+		boolean result = false;
 		boolean result1 = false;
 		boolean result2 = false;
 		boolean result3 = false;
@@ -220,11 +220,11 @@ public class JDBCCarDAO implements CarDAO {
 					+ "' where id = " + model.getId());
 			result2 = statement.execute("update client set wallet=wallet-" + model.getPrice() * days
 					+ " where user_name= '" + currentPrincipalName + "'");
-			result3 = statement.execute(
-					"update owner set client_user_name =  (select client_user_name from car where id = '"
+			result3 = statement
+					.execute("update owner set client_user_name =  (select client_user_name from car where id = '"
 							+ model.getId() + "') where user_name='" + model.getOwnerUserName() + "'");
 			result4 = statement.execute("update owner set profit=profit+" + model.getPrice() * days
-					+ " where user_name='" + model.getOwnerUserName() +"'");
+					+ " where user_name='" + model.getOwnerUserName() + "'");
 			result5 = statement
 					.execute("update car set end_position_lat= (select current_location from client where user_name= '"
 							+ currentPrincipalName + "') where id = " + model.getId() + " ");
@@ -245,7 +245,7 @@ public class JDBCCarDAO implements CarDAO {
 			} catch (Exception ex) {
 			}
 		}
-		
+
 		return result;
 
 	}
@@ -295,6 +295,7 @@ public class JDBCCarDAO implements CarDAO {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
 
+		
 		Connection connection = newConnection();
 		try {
 			PreparedStatement ps = null;
@@ -344,27 +345,29 @@ public class JDBCCarDAO implements CarDAO {
 		}
 
 		return model;
+		
 	}
 
 	@Override
 	public boolean delete(Car model) {
 		boolean result = false;
-		Connection connection = newConnection();
-		try {
-			Statement statement = connection.createStatement();
-			result = statement.execute("delete from car where id = " + model.getId());
-			connection.commit();
-		} catch (SQLException ex) {
 
-			throw new RuntimeException("Error updating car.", ex);
-		} finally {
+			Connection connection = newConnection();
 			try {
-				connection.close();
-			} catch (Exception ex) {
+				Statement statement = connection.createStatement();
+				result = statement.execute("delete from car where id = " + model.getId());
+				connection.commit();
+			} catch (SQLException ex) {
 
+				throw new RuntimeException("Error updating car.", ex);
+			} finally {
+				try {
+					connection.close();
+				} catch (Exception ex) {
+
+				}
 			}
-		}
-		return result;
+			return result;
 
 	}
 
